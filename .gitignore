@@ -1,0 +1,18 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Licensed fonts — never commit (see brand/fonts/README.md)
+brand/fonts/*.otf
+brand/fonts/*.ttf
+brand/fonts/*.woff
+brand/fonts/*.woff2
+# Exception: Mulish is OFL-licensed and may be committed if placed in brand/fonts/mulish/
+!brand/fonts/mulish/
+
+# Working / export temp files
+*.tmp
+~$*
