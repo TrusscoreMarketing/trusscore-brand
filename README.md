@@ -40,7 +40,7 @@ No version is pinned in `plugin.json`, so **every commit merged to `main` propag
 
 ## Ownership and changes
 
-- Brand owner: Trusscore Marketing
+- Brand owner: Trusscore Brand Manager: Melanie Landry
 - All changes to `skills/` and `brand/` go through a pull request and a review before merge.
 - `main` is protected. Tag every release with a semantic version (for example `v1.0.0`) and record it in `CHANGELOG.md`.
 - The commit history is the record of what changed and when — this replaces ad-hoc "did my edit save?" checks.
