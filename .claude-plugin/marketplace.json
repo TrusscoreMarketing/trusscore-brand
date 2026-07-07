@@ -1,0 +1,15 @@
+{
+  "name": "trusscore",
+  "owner": {
+    "name": "Trusscore Marketing",
+    "email": "trusscore.marketing@gmail.com"
+  },
+  "description": "Trusscore brand system — guidelines, skill, and assets.",
+  "plugins": [
+    {
+      "name": "trusscore-brand",
+      "source": "./",
+      "description": "Trusscore brand guidelines, colors, typography, voice, and editorial standards, with bundled logo assets."
+    }
+  ]
+}
