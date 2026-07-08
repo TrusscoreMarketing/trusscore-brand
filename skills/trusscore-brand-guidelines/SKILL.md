@@ -742,6 +742,13 @@ No spaces. En dash for ranges (12–18 inches). Hyphen for compounds (moisture-r
 ### Oxford Comma
 Always use the Oxford (serial) comma in lists of three or more items.
 
+### Bulleted Lists — No Terminal Period
+Do not end a bullet point with a period. Bullets are fragments, not sentences — drop the terminal period, even when the bullet is a full clause.
+
+When a bullet has a **bold label plus supporting copy**, the preferred structure is two levels: put the label on the **top-level bullet** (solid truss glyph) and the supporting copy on a **sub-bullet** (outline truss glyph) beneath it, with no period after the label. A single-level bold lead-in with a separator period ("**Brand guidelines.** The rulebook…") is also acceptable, but the two-level version is preferred for decks. Either way, the *end* of a bullet never takes a period.
+
+Exceptions that keep normal terminal punctuation: a callout/takeaway box written as a full sentence, and body paragraphs (prose, not a list). If two or more bullets in a list are full sentences that genuinely need end punctuation, rewrite them as fragments instead of adding periods.
+
 ---
 
 ## 13. Brand Name Usage Rules
@@ -944,6 +951,7 @@ Use the segment-specific divider where one exists (Residential, Agriculture, Sla
 - Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, offset ≈11.10" / 6.86", sized ≈1.66" × 0.37". Placed once on the slide master and inherited by every content layout. Do not duplicate it on individual slides.
 - Body text font: Aptos throughout, set explicitly per text run (the theme default is Calibri Light and applies silently if Aptos is not set per run).
 - **No all-caps kicker / eyebrow line above or below slide headings.** Use the heading alone with whitespace. (The one permitted exception is the small letter-spaced category label above a stat-card row, below.)
+- **Bullet levels:** top-level bullets use the solid yellow truss glyph; sub-bullets use the outline (hollow) truss glyph — both are built into the master body style (levels 1 and 2). For a label plus supporting copy, put the label on the top bullet and the copy on an outline sub-bullet. No terminal period on any bullet (Section 12).
 
 ### Stat / data cards
 Used for executive summaries, KPI rows, and metric call-outs.

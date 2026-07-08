@@ -119,6 +119,7 @@ This is the middle path between the public skill's "every slide needs a visual" 
 - **Title sizing:** start at 48pt. If a title is too long for one comfortable line, reduce to fit down to a **hard floor of 32pt**; if it still will not fit at 32pt, **shorten the title** rather than going smaller. A title must not dominate the top of the slide.
 - Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, ≈11.10" / 6.86", ≈1.66" × 0.37". It lives on the slide master and is inherited — **do not duplicate it on individual slides.**
 - Body font: Aptos throughout, set explicitly per run.
+- **Bullet levels:** top-level bullets use the solid yellow truss glyph, sub-bullets the outline truss glyph (both built into the master body style, levels 1 and 2). For a label plus supporting copy, put the label on the top bullet (bold, no period) and the copy on an outline sub-bullet — this is the preferred deck pattern. No terminal period on any bullet.
 
 **Stat / data cards** (executive summaries, KPI rows, metric call-outs)
 - Rounded rectangle, corner radius 6% (`adj val 6000`) — subtle, not a pill.
@@ -151,7 +152,7 @@ Aptos is mandatory brand output, but the public skill's LibreOffice-based QA ren
 
 ## Voice & identity (defer to the brand skill, but never violate on a slide)
 
-Slide copy follows the same Trusscore rules as all content: never the possessive "Trusscore's"; full trademarked names on first reference (Trusscore® Wall&CeilingBoard™, Trusscore® SlatWall™, etc.); never "plastic," never the internal abbreviations (WCB/SW) in visible copy; "PVC" only in technical body copy, never headlines. Headlines / H1–H2 in Title Case, everything else sentence case. Oxford comma always; em dashes no spaces; fractions not decimals; imperial first; U.S. spelling. Approved messaging lines by segment (see brand skill) — never use drywall as the comparison in commercial or agricultural decks.
+Slide copy follows the same Trusscore rules as all content: never the possessive "Trusscore's"; full trademarked names on first reference (Trusscore® Wall&CeilingBoard™, Trusscore® SlatWall™, etc.); never "plastic," never the internal abbreviations (WCB/SW) in visible copy; "PVC" only in technical body copy, never headlines. Headlines / H1–H2 in Title Case, everything else sentence case. Oxford comma always; em dashes no spaces; fractions not decimals; imperial first; U.S. spelling. **No terminal period on bullet points** (bullets are fragments; a bold lead-in label keeps its separator period, but the bullet's end drops it). Approved messaging lines by segment (see brand skill) — never use drywall as the comparison in commercial or agricultural decks.
 
 ---
 

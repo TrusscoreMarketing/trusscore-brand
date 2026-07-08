@@ -49,6 +49,7 @@ Trusscore writes to four audiences and the register shifts by audience. Wrong-au
 - Em dashes: no spaces, `word—word`, maximum two per piece.
 - En dash for ranges (12–18 inches), hyphen for compounds (moisture-resistant).
 - **Oxford comma always**, in every list of three or more.
+- **No terminal period on bullet points** — bullets are fragments; a bullet that ends with a period is a finding. A bold lead-in label inside a bullet keeps its separator period; full-sentence callout boxes and body paragraphs keep normal end punctuation.
 - Fractions not decimals (1-1/4" not 1.25"). Imperial first. U.S. spelling (color, aluminum, center).
 
 ## 6. Brand-name rules, a single instance is a finding
