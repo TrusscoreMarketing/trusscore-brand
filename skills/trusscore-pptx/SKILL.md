@@ -126,6 +126,7 @@ This is the middle path between the public skill's "every slide needs a visual" 
 - Card label (e.g. "TOTAL SAMPLE UNITS"): small caps / uppercase, TC Text `#111A22`, muted weight.
 - Big number: TC Slate or TC Text, bold, large — the focal point.
 - Supporting line: muted grey / TC Text at reduced opacity — a documented grey, not an off-palette grey.
+- **Card-row emphasis variant:** a lone card stays white, but in a *row* of cards fills may vary across white, ramp grey (`#F5F6F7`/`#EEF1F3`), light-yellow tint (`#FFF8EC`), or full TC Slate `#3A4B5C` for rhythm. Exactly one dark-slate card is the stand-out (number in TC Yellow, label white). One slate card per row max; never every card a different color; no yellow-tint plus blue fills in one row. Fill-for-emphasis, not an edge stripe.
 
 **Trend / delta indicators — approved functional exception**
 - Up/down change signals (e.g. "▲ 193.2% MoM", "▼ 54.5% MoM") use red for decline, green for growth. This is a data signal, not decoration — exempt from the yellow ceiling and the card-accent ban.

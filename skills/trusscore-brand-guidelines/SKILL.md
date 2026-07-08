@@ -954,6 +954,8 @@ Used for executive summaries, KPI rows, and metric call-outs.
 - Big number: TC Slate or TC Text, bold, large — the focal point of the card.
 - Supporting line: muted grey from the ramp (`#8A9BAC` or `#6A7A88`), not an off-palette grey.
 
+**Card-row emphasis variant (approved).** A single stat/data card on its own stays white. But in a *row* of cards, fills may vary to create rhythm: white, a grey from the ramp (`#F5F6F7`, `#EEF1F3`), a light yellow tint (`#FFF8EC`), or full TC Slate `#3A4B5C`. The rule is that **exactly one card is the dark-slate stand-out** — the emphasis card carrying the row's most important number (number in TC Yellow `#FEB100`, label white, supporting line in a light grey such as `#DDE3E8`). Constraints: only one dark-slate card per row; never make every card a different color (that reads as the rejected AI dashboard); do not pair yellow-tint and blue fills in the same row; keep the hairline border, 6% radius, and no-shadow rules. This is fill-for-emphasis, not the banned per-card *edge stripe*.
+
 ### Trend / delta indicators — approved functional exception
 Up/down change indicators (e.g. "▲ 193.2% MoM", "▼ 54.5% MoM") use red for decline and green for growth. This is a functional convention parallel to the red/green rules for financial spreadsheets; it is not decorative color-coding and is not subject to the 60-30-10 yellow ceiling or the card-accent ban, because it is a data signal attached to a specific number, not a category indicator.
 - Decline: red `#DC3545`.

@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.2] — 2026-07-07
+
+### Added
+- **Section 14b — stat-card-row emphasis variant:** a lone stat card stays white, but a *row* of cards may use varied fills (white, ramp grey, light-yellow tint, or full TC Slate) for rhythm, with exactly one dark-slate stand-out card carrying the key number (number in TC Yellow, label white). Guardrails: one slate card per row, never every card a different color, no yellow-plus-blue fills in one row, and this is fill-for-emphasis, not the banned edge stripe. Mirrored into the `trusscore-pptx` skill and the `de-slop` visual check so a slate emphasis card grades as Aligned.
+
 ## [1.4.1] — 2026-07-07
 
 ### Changed
