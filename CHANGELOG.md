@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.3] — 2026-07-07
+
+### Added
+- **Review gate (Section 0):** added a standing rule to run the `de-slop` skill on any finished Trusscore deliverable (deck, doc, email, social post, landing page, dashboard, or designed asset) and apply fixes before delivery. Placed in the always-read Section 0 so it rides along on all Trusscore work, extending the review gate that `trusscore-pptx` already runs for decks to every deliverable type.
+
 ## [1.4.2] — 2026-07-07
 
 ### Added

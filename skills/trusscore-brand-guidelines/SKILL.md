@@ -15,6 +15,9 @@ This skill encodes the official Trusscore brand identity from the Trusscore Styl
 
 ## 0. Precedence Over Format Skills — Read This First
 
+### Review gate — run de-slop before delivering
+Before delivering any finished Trusscore deliverable — a deck, document, email, social post, landing page, dashboard, or any designed asset — run the `de-slop` skill on it and apply the fixes it flags, then deliver. This is the standing quality gate for **all** Trusscore output, not just decks. de-slop detects and suggests; you own the fixes. Skip it only when the user explicitly says to skip, or for trivial conversational replies that are not a deliverable. (Format-specific skills such as `trusscore-pptx` already call de-slop as their final step; this rule extends the same gate to every other deliverable type.)
+
 When producing a docx, pptx, or any other format-specific artifact for Trusscore, the format skill (docx/pptx/xlsx/pdf SKILL.md) governs **mechanics only** — file structure, XML validity, page sizing, table widths, QA rendering process. It does NOT govern brand decisions. Where a format skill states a default or a "never do X" for font, color, or layout that conflicts with this skill, **this skill wins, every time, with no exception.**
 
 Two confirmed conflicts to actively override:
