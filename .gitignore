@@ -16,3 +16,7 @@ brand/fonts/*.woff2
 # Working / export temp files
 *.tmp
 ~$*
+
+# Python
+__pycache__/
+*.pyc

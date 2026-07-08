@@ -146,7 +146,6 @@ def cards(prs,title,items,slate=None):
         c=_rrect(s,X3[i],CY,CW,CH,fill,None if is_slate else BORDER,radius=0.06)
         nameC=WHITE if is_slate else SLATE; descC=LGREY if is_slate else GREY
         _cardtext(c,[(name,22,nameC,True,4),(role,16,YELLOW,True,10),(desc,16,descC,False,0)])
-        if not is_slate: _accent(s,X3[i]+CW-0.5,CY+0.22)
     return s
 
 def stats(prs,title,items,slate=None):
@@ -190,7 +189,7 @@ def _callout(slide,text,y=4.75):
     c=_rrect(slide,0.72,y,11.9,0.95,TINT,YELLOW,radius=0.06)
     tf=c.text_frame; tf.word_wrap=True; tf.vertical_anchor=MSO_ANCHOR.MIDDLE
     p=tf.paragraphs[0]; p.alignment=PP_ALIGN.CENTER
-    r=p.add_run(); r.text=str(text).strip().rstrip('.'); r.font.name="Aptos"; r.font.size=Pt(16); r.font.bold=True; r.font.color.rgb=SLATE
+    r=p.add_run(); r.text=str(text).strip(); r.font.name="Aptos"; r.font.size=Pt(16); r.font.bold=True; r.font.color.rgb=SLATE  # callouts are full sentences: keep terminal punctuation
 
 def callout(slide,text,y=4.75): _callout(slide,text,y)   # add a callout to an existing slide
 

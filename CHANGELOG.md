@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.6] — 2026-07-08
+
+### Fixed
+- **Bundled builder refinements (`trusscore_deck.py`), from a de-slop pass on the playbook:** callouts now keep their terminal period (they are full sentences, not bullet fragments); removed the yellow corner accent from `cards()` so cards carry no edge accent (aligns with the Section 14b no-edge-accent rule).
+
 ## [1.4.5] — 2026-07-08
 
 ### Added
