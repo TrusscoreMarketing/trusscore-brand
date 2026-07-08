@@ -2,6 +2,15 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.1] — 2026-07-07
+
+### Changed
+- **Section 14b — title type corrected:** content-slide titles are **Aptos Light, 48pt** (confirmed from the master `titleStyle`), not "Aptos regular / no Light" as previously written. Added the title sizing rule: start at 48pt, reduce to fit only down to a hard floor of 32pt, and shorten the title rather than going below 32pt. The `trusscore-pptx` skill mirror was updated to match.
+- **Section 14b — visual/text balance rule added:** decks must mix visual and text-forward slides (roughly half and half, one dominant treatment per slide, no more than two visually-heavy slides in a row, ~60% graphic-slide cap). Prevents both the all-bullets and all-cards failure modes. Mirrored in the `trusscore-pptx` skill.
+
+### Fixed
+- Re-synced the deployed `trusscore-pptx` SKILL so the card-border grey reads `#E1E5E8` (superseding `#E3E7EB`) and no "DRAFT" marker remains.
+
 ## [1.4.0] — 2026-07-07
 
 ### Added

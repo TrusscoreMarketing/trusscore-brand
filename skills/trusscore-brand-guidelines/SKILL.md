@@ -936,7 +936,8 @@ Use the segment-specific divider where one exists (Residential, Agriculture, Sla
 ### Content slides
 - Background: solid white (`bg1` / `lt1`).
 - Title: top-left, offset 537,460 / 456,432 EMU (≈0.59" / 0.50"), width ≈11,117,083 EMU (≈12.16").
-- Title type: Aptos, regular weight (not bold, no "Light"), 48pt, TC Slate `#3A4B5C` (hardcoded, not theme-referenced), -20 letter-spacing, 100% line spacing.
+- Title type: **Aptos Light** (confirmed from the master `titleStyle`), **48pt to start**, TC Slate `#3A4B5C` (hardcoded, not theme-referenced), -20 letter-spacing, 100% line spacing. Not bold.
+- **Title sizing rule:** 48pt is the starting size. If a title is too long for one comfortable line, it may be reduced to fit, **down to a hard floor of 32pt**. If it still will not fit at 32pt, **shorten or tighten the title** — never go below 32pt. Titles should not dominate the top of the slide; a title that needs sub-32pt type is a signal to cut words, not shrink further.
 - Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, offset ≈11.10" / 6.86", sized ≈1.66" × 0.37". Placed once on the slide master and inherited by every content layout. Do not duplicate it on individual slides.
 - Body text font: Aptos throughout, set explicitly per text run (the theme default is Calibri Light and applies silently if Aptos is not set per run).
 - **No all-caps kicker / eyebrow line above or below slide headings.** Use the heading alone with whitespace. (The one permitted exception is the small letter-spaced category label above a stat-card row, below.)
@@ -963,6 +964,15 @@ Up/down change indicators (e.g. "▲ 193.2% MoM", "▼ 54.5% MoM") use red for d
 - Fill: light yellow tint `#FFF8EC`.
 - Border: TC Yellow `#FEB100`.
 - Used sparingly — one per slide maximum, reserved for a genuinely important takeaway, not a repeating per-slide device.
+
+### Visual and text balance (mix, do not max)
+Two failure modes are both off-brand: a deck of nothing but headings and bullets (boring), and a deck where every slide is a card grid or stat block (busy, and it reads as a template). Trusscore decks deliberately mix the two.
+
+- **Roughly half and half.** Across the content slides, about half carry a built visual treatment (card row, stat callouts, flow diagram, two-column, or a real photo) and about half are text-forward (a heading with concise prose or one short, clean list). A well-set text slide is on-brand, not a failure — whitespace is a feature.
+- **One treatment per slide.** Choose a single dominant device per slide. Never stack a card row, stat callouts, and a callout box on one slide.
+- **Rotate for rhythm.** No more than two visually-heavy slides in a row; alternate text-forward and visual slides so the deck breathes.
+- **Earn the visual.** Use a graphic only when the content fits it: numbers → stat callouts; parallel items → a card row; a sequence → a flow diagram; a comparison → two columns; a real space → a photo. If the point is explanatory, keep it a clean text slide.
+- **Density cap.** At most about 60% of content slides should carry a built graphic. The cover, the closing slate slide, and any full-photo slide count on the visual side. Tune the ratio to the audience — a data readout leans more visual, a narrative deck leans more text — but never let the whole deck collapse to one mode.
 
 ## 14c. HTML Dashboard Spec
 

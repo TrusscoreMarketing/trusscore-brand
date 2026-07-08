@@ -75,6 +75,20 @@ Rules where the public skill already **agrees** with Trusscore — keep enforcin
 
 ---
 
+## Visual and text balance (mix, do not max)
+
+Two failure modes are both off-brand: a deck of nothing but headings and bullets (boring), and a deck where every slide is a card grid or stat block (busy, and it reads as a template). Trusscore decks deliberately mix the two.
+
+- **Roughly half and half.** Across the content slides, about half carry a built visual treatment (card row, stat callouts, flow diagram, two-column, or a real photo) and about half are text-forward (a heading with concise prose or one short, clean list). A well-set text slide is on-brand, not a failure — whitespace is a feature.
+- **One treatment per slide.** Choose a single dominant device per slide. Never stack a card row and stat callouts and a callout box on the same slide.
+- **Rotate for rhythm.** No more than two visually-heavy slides in a row. Alternate text-forward and visual slides so the deck breathes.
+- **Earn the visual.** Use a graphic only when the content fits it: numbers → stat callouts; parallel items → a card row; a sequence → a flow diagram; a comparison → two columns; a real space → a photo. If the point is explanatory, keep it a clean text slide.
+- **Density cap.** At most about 60% of content slides should carry a built graphic. The cover, the closing slate slide, and any full-photo slide count on the visual side.
+
+This is the middle path between the public skill's "every slide needs a visual" (too much) and a plain bulleted deck (too little): restraint plus rhythm. Tune the ratio to the audience — a data readout leans more visual, a narrative deck leans more text — but never let the whole deck collapse to one mode.
+
+---
+
 ## The 14b spec (mirror of Section 14b — Section 14b is canon)
 
 **Canonical colors.** Use `#3A4B5C` for slate in new work (title text hardcodes it; the theme swatch `#3A4B5B` is a one-digit typo — do not rely on it). Confirmed accents: TC Blue `#009BD6`, TC Green `#6BA543`, TC Yellow `#FEB100`.
@@ -99,7 +113,8 @@ Rules where the public skill already **agrees** with Trusscore — keep enforcin
 **Content slides**
 - Background: solid white.
 - Title: top-left, offset 537,460 / 456,432 EMU (≈0.59" / 0.50"), width ≈11,117,083 EMU (≈12.16").
-- Title type: **Aptos, regular weight**, 48pt, TC Slate `#3A4B5C` (hardcoded), -20 letter-spacing, 100% line spacing. Not bold, not "Light".
+- Title type: **Aptos Light** (confirmed from the master `titleStyle`), **48pt to start**, TC Slate `#3A4B5C` (hardcoded), -20 letter-spacing, 100% line spacing. Not bold.
+- **Title sizing:** start at 48pt. If a title is too long for one comfortable line, reduce to fit down to a **hard floor of 32pt**; if it still will not fit at 32pt, **shorten the title** rather than going smaller. A title must not dominate the top of the slide.
 - Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, ≈11.10" / 6.86", ≈1.66" × 0.37". It lives on the slide master and is inherited — **do not duplicate it on individual slides.**
 - Body font: Aptos throughout, set explicitly per run.
 
