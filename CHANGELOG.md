@@ -2,6 +2,16 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.5] — 2026-07-08
+
+### Added
+- **Body type scale — auto-tier ladder (Section 14b + pptx skill):** content-slide body steps down a fixed ladder to fit the slide — 28/24 (default) → 24/20 → 20/16 (dense) — picking the largest step where all content fits; below the floor the slide is split or copy is cut, never shrunk past 16pt. Card labels, captions, callouts, and flow-node text sit at 16–22pt. Documented industry reference ranges (title 36–44, body 24–28, captions 18–20). The build scripts implement the ladder via a `pick_tier` estimator; PowerPoint auto-fit is a backstop only.
+- **Bullet spacing rule (Section 14b + pptx skill):** override the master's wide indent so the truss glyph sits tight to its text (~0.28" hanging); sub-bullets indent ~0.28" further with the same gap.
+- **Bundled builder `skills/trusscore-pptx/scripts/trusscore_deck.py`:** a canonical Python builder that enforces the spec in code — auto-tier type ladder (`pick_tier`), tight bullet spacing, two-level truss bullets, no terminal periods, the locked palette, and the master template. High-level API (`open_deck`, `cover`, `agenda`, `section`, `content`, `cards`, `stats`, `flow`, `status_row`, `callout`, `close`, `save`). The pptx skill now instructs builds to use it so sizing/spacing can't drift.
+
+### Fixed
+- Rebuilt the brand-system overview and the new AI Output Brand Alignment Playbook to the corrected type scale and bullet spacing (previous drafts rendered body copy too small at 16–20pt).
+
 ## [1.4.4] — 2026-07-07
 
 ### Added

@@ -952,6 +952,14 @@ Use the segment-specific divider where one exists (Residential, Agriculture, Sla
 - Body text font: Aptos throughout, set explicitly per text run (the theme default is Calibri Light and applies silently if Aptos is not set per run).
 - **No all-caps kicker / eyebrow line above or below slide headings.** Use the heading alone with whitespace. (The one permitted exception is the small letter-spaced category label above a stat-card row, below.)
 - **Bullet levels:** top-level bullets use the solid yellow truss glyph; sub-bullets use the outline (hollow) truss glyph — both are built into the master body style (levels 1 and 2). For a label plus supporting copy, put the label on the top bullet and the copy on an outline sub-bullet. No terminal period on any bullet (Section 12).
+- **Body type scale — auto-tier ladder.** Content-slide body steps down a fixed ladder to fit the slide. Pick the **largest step where all content fits without crowding** (top-level / sub-bullet):
+  - **28 / 24** — default (up to ~3 short items)
+  - **24 / 20** — standard (3–4 items, or a line that wraps)
+  - **20 / 16** — dense (only when needed; **16pt is the hard floor**)
+  - If it will not fit at 20/16, **split the slide or cut copy** — never shrink below 16.
+
+  Change the step by content density, and **reduce words before reducing size** (a 6-bullet slide should become two slides, not 16pt type). Card labels, captions, callouts, and flow-node text: 16–22pt. PowerPoint auto-fit stays on only as a backstop, never as the sizing mechanism. Industry reference for projected slides: title 36–44pt, body 24–28pt, captions 18–20pt; Trusscore titles are 48pt (title rule above).
+- **Bullet spacing:** keep the glyph close to its text. Top-level bullets hang the text ~0.28" (256,032 EMU) from the glyph; sub-bullets indent ~0.28" further with the same tight gap. Override the master's wider default indent — do not leave a large gap between the truss glyph and the text.
 
 ### Stat / data cards
 Used for executive summaries, KPI rows, and metric call-outs.

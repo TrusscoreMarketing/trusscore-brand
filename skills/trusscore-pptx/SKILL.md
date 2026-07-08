@@ -35,6 +35,31 @@ The production master is **`Trusscore_Amazon_Monthly_Report_May_2026.pptx`** (th
 
 ---
 
+## Bundled builder — use it (`scripts/trusscore_deck.py`)
+
+This skill bundles a Python builder, `scripts/trusscore_deck.py`, that enforces the brand spec **in code**: the type ladder (auto-tier), tight bullet spacing, two-level truss bullets (solid L1 / outline L2), no terminal periods on bullets, the locked palette, and the master template. **Prefer it over hand-rolling `python-pptx`** so sizing and spacing cannot drift.
+
+```python
+import sys, os
+sys.path.insert(0, os.path.join("<this skill dir>", "scripts"))
+import trusscore_deck as td
+prs = td.open_deck()                                     # loads the bundled master, clears slides
+td.cover(prs, "Title", "Subtitle", yellow="OneWord")     # one keyword in yellow
+td.agenda(prs, ["Section one", "Section two", ...])       # include when ~6+ content slides / 3+ sections
+td.section(prs, "What We Built", "one-line statement")   # slate/photo section divider
+td.content(prs, "The Three Pieces", [("Label","supporting copy"), ...])  # auto-tiers 28/24 -> 24/20 -> 20/16
+td.cards(prs, "Quick Start", [("name","role","desc"), ...], slate=1)      # one slate emphasis card
+td.stats(prs, "What This Means", [("1","label","sub"), ...], slate=1)     # big-number callouts
+td.flow(prs, "How They Work Together", [("name","role"), ...], callout="one takeaway")
+s = td.status_row(prs, "Reading a Scorecard", [("Good to go","green","Ship it"), ...]); td.callout(s, "...")
+td.close(prs, "Headline", "yellow subline")
+td.save(prs, out_path)
+```
+
+`content()` auto-tiers the body to fit via `pick_tier` (28/24 → 24/20 → 20/16, 16pt hard floor). **If `pick_tier` returns the floor, that slide is too dense — split it or cut copy, don't ship crowded text.** Bullets, spacing, palette, and the no-terminal-period rule are applied for you; do not override font sizes by hand. For a bespoke slide the module doesn't cover, fall back to `python-pptx` but follow the 14b spec below.
+
+---
+
 ## Slide types — build every new slide from a template layout
 
 The master template defines a full set of **named slide layouts**. When adding slides to a Trusscore deck, **choose one of these layouts and instantiate it** — do not invent a new layout or hand-place chrome. Building on a template layout is what inherits the theme, the footer logo lockup, and correct positioning automatically. In the editing path this means: add the new slide against the desired layout by name (or duplicate an existing slide that already uses it), then replace only the content.
@@ -120,6 +145,8 @@ This is the middle path between the public skill's "every slide needs a visual" 
 - Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, ≈11.10" / 6.86", ≈1.66" × 0.37". It lives on the slide master and is inherited — **do not duplicate it on individual slides.**
 - Body font: Aptos throughout, set explicitly per run.
 - **Bullet levels:** top-level bullets use the solid yellow truss glyph, sub-bullets the outline truss glyph (both built into the master body style, levels 1 and 2). For a label plus supporting copy, put the label on the top bullet (bold, no period) and the copy on an outline sub-bullet — this is the preferred deck pattern. No terminal period on any bullet.
+- **Body type scale — auto-tier ladder:** pick the largest step where all content fits without crowding: **28/24** (default, ≤3 short items) → **24/20** (3–4 items or a wrapping line) → **20/16** (dense; 16 is the hard floor). If it won't fit at 20/16, **split the slide or cut copy** — never below 16. Reduce words before size. Card labels, captions, callouts, flow-node text: 16–22pt. Auto-fit is a backstop only. (Industry: title 36–44, body 24–28, captions 18–20; Trusscore titles 48.)
+- **Bullet spacing:** override the master's wide indent — top level hangs text ~0.28" (256,032 EMU) from the glyph; sub-bullet indents ~0.28" further, same tight gap. No large glyph-to-text gap.
 
 **Stat / data cards** (executive summaries, KPI rows, metric call-outs)
 - Rounded rectangle, corner radius 6% (`adj val 6000`) — subtle, not a pill.
