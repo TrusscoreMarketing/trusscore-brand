@@ -54,6 +54,8 @@ Rules:
 - If the deck needs a slide type not in this list, prefer composing it inside `Title and Content` or `Blank` over creating a new master layout.
 - Never duplicate the footer lockup onto a slide — it's inherited from the layout/master.
 
+**Agenda slide — when to include one.** Add an agenda slide (from the `Agenda` layout, placed immediately after the cover) when the deck has **roughly 6 or more content slides, covers 3 or more distinct sections, or is an external / formal / customer / board deck**. Skip it for short decks (5 or fewer content slides), quick internal updates, or single-topic decks. Keep the agenda to 3–6 items in sentence case that mirror the section titles; do not number the items unless the deck is a sequential process. Do not add an agenda by reflex — decide it against this threshold, and if you skip it on a borderline deck, it is because the deck is short or single-topic, not because agendas were forgotten.
+
 ---
 
 ## Overrides — where the public pptx skill is WRONG for Trusscore

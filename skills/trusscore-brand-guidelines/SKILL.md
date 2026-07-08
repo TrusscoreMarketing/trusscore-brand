@@ -921,7 +921,7 @@ The master defines a complete set of named layouts. When adding slides, instanti
 
 - **Covers / title:** Title Slide, Title1 (2_Title1), Title3 (1_Title3), Title - Agriculture
 - **Section dividers:** Section - General, Section - Choose your own picture, Section - Residential, Section - Residential/SlatWall
-- **Agenda:** Agenda
+- **Agenda:** Agenda — include one (right after the cover) when the deck has ~6+ content slides, 3+ distinct sections, or is external/formal; skip it for short (≤5-slide) or single-topic decks. 3–6 sentence-case items mirroring the section titles.
 - **Content:** Title and Content, Title Only, Two Columns, Two Columns with Headings, Blank, DEFAULT
 - **Picture:** Picture Left, Picture Right, 1 (full-picture)
 - **Quote:** Quote, 1_Quote

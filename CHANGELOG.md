@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.4] — 2026-07-07
+
+### Added
+- **Agenda-slide rule:** documented when to include an agenda slide (from the `Agenda` layout, right after the cover) — decks with ~6+ content slides, 3+ distinct sections, or external/formal audiences get one; short (≤5-slide) or single-topic decks skip it. 3–6 sentence-case items mirroring the section titles. Added to the `trusscore-pptx` skill and Section 14b so agenda inclusion is a deliberate decision, not an omission by default.
+
 ## [1.4.3] — 2026-07-07
 
 ### Added
