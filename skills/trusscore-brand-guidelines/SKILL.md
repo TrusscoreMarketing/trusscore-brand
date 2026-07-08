@@ -898,55 +898,71 @@ Every content image carries descriptive **`alt` text** stating what the image sh
 
 ## 14b. PowerPoint Visual Spec
 
-This spec is reverse-engineered directly from the production master template (`Trusscore_Amazon_Monthly_Report_May_2026.pptx`, confirmed against live XML, June 2026) — not from a paraphrased description. Values below are exact. A prior version of this section was written once before and did not persist in the skill file; treat this version as the only authoritative one and verify after any future edit that it is still present in subsequent sessions — do not assume a skill-file edit has saved correctly.
+This spec is reverse-engineered from the production master template and confirmed against two example decks (`Trusscore Powerpoint Design Examples.pptx`, `Trusscore_Powerpoint_Template.pptx`), read from live slide XML, July 2026. Values below are exact and current. This is the only authoritative version; verify after any future edit that it persisted.
 
-**Canonical color correction:** the theme's `accent1`/`dk2` swatch is stored as `#3A4B5B` (one digit off from the documented `#3A4B5C`). This is a typo in the theme XML, not a second valid value. Title text bypasses the theme swatch entirely and hardcodes `#3A4B5C` directly — that hardcoded value is canon. When building new Trusscore pptx files, use `#3A4B5C` and do not rely on the theme's `accent1`/`dk2` token for slate.
+**Canonical color correction:** the theme's `accent1`/`dk2` swatch is stored as `#3A4B5B` (one digit off from `#3A4B5C`). This is a typo in the theme XML, not a second valid value. Title text bypasses the theme swatch and hardcodes `#3A4B5C` directly; that hardcoded value is canon. When building new Trusscore pptx files use `#3A4B5C` and do not rely on the theme's `accent1`/`dk2` token for slate.
 
-**Confirmed production accent values** (now canon, resolving prior "needs confirmation" placeholders):
-- TC Blue: `#009BD6`
-- TC Green: `#6BA543`
+**Confirmed accent values:** TC Blue `#009BD6`, TC Green `#6BA543`, TC Yellow `#FEB100`.
+
+**Neutral grey ramp (documented).** Trusscore decks use a full slate-tinted neutral scale, not the single TC Grey `#DFDBDA`. All of the following are approved neutrals (light → dark): `#F5F6F7`, `#EEF1F3`, `#E8EAEC` (1pt hairline dividers), `#E1E5E8` (0.75pt card borders), `#DDE3E8`, `#CFD6DC`, `#8A9BAC` (muted labels), `#6A7A88` (muted supporting/caption text). TC Grey `#DFDBDA` remains valid alongside these. Use greys from this ramp for borders, panel fills, and muted text; never an off-palette neutral. Snap imprecise re-entries to canon: `#3A4B5B`→`#3A4B5C`, `#6BA542`→`#6BA543`, `#009BD7`/`#0099D5`→`#009BD6`, `#FDB116`→`#FEB100`.
+
+**Two darks.** TC Text `#111A22` for body copy and captions; `#222B33` for a slightly lighter heading dark (headings only, never body).
+
+**Warm accent is TC Yellow `#FEB100` only.** The gold `#F4A700` seen in older decks is off-brand; do not use it, normalize to `#FEB100`.
 
 ### Slide dimensions
 12,192,000 × 6,858,000 EMU (13.33" × 7.5", standard 16:9 widescreen).
 
+### Slide layouts — build every new slide from a template layout
+The master defines a complete set of named layouts. When adding slides, instantiate one of these (or duplicate an existing slide that uses it) so the new slide inherits the theme, the footer lockup, and correct positioning. Do not invent layouts or hand-place chrome.
+
+- **Covers / title:** Title Slide, Title1 (2_Title1), Title3 (1_Title3), Title - Agriculture
+- **Section dividers:** Section - General, Section - Choose your own picture, Section - Residential, Section - Residential/SlatWall
+- **Agenda:** Agenda
+- **Content:** Title and Content, Title Only, Two Columns, Two Columns with Headings, Blank, DEFAULT
+- **Picture:** Picture Left, Picture Right, 1 (full-picture)
+- **Quote:** Quote, 1_Quote
+- **Closing:** Ending, Ending1 (1_Ending, 1_Ending1)
+
+Use the segment-specific divider where one exists (Residential, Agriculture, SlatWall) rather than recoloring a generic one. If a needed slide type is not listed, compose it inside Title and Content or Blank rather than creating a new master layout.
+
 ### Cover / section-divider slides
-- Background: solid fill, TC Slate `#3A4B5B` (theme `accent1`)
-- Logo lockup (white wordmark + yellow truss mark + "material + science" tagline): top-left, offset 537,460 / 473,468 EMU (≈0.59" / 0.52" from top-left), sized 3,898,508 × 861,773 EMU (≈4.26" × 0.94")
-- Title text: white, bold, Aptos, positioned below the logo lockup — one keyword within the title may be set in TC Yellow (`accent2`) for emphasis, rest stays white. Do not yellow more than one phrase per title.
-- Solo truss mark (solid TC Yellow `#FEB100`, no wordmark): bottom-right corner, offset ≈11.56" / 6.18" from top-left, sized ≈1.18" × 0.93"
-- A small set of three light-grey (`#DFDBDA`-range) outlined parallelogram shapes appears as a minor decorative element on the cover in current production use. This is not part of the documented truss-mark system in Section 3b and should not be treated as required — it's an extra flourish, not a locked standard. Omit it unless deliberately reintroducing it as an approved cover motif.
+- Background: solid fill, TC Slate `#3A4B5B` (theme `accent1`).
+- Logo lockup (white wordmark + yellow truss mark + "material + science" tagline): top-left, offset 537,460 / 473,468 EMU (≈0.59" / 0.52"), sized 3,898,508 × 861,773 EMU (≈4.26" × 0.94").
+- Title text: white, bold, Aptos, below the logo lockup. One keyword within the title may be set in TC Yellow (`accent2`) for emphasis; the rest stays white. Do not yellow more than one phrase per title.
+- Solo truss mark (solid TC Yellow `#FEB100`, no wordmark): bottom-right corner, offset ≈11.56" / 6.18", sized ≈1.18" × 0.93".
+- The three light-grey outlined parallelograms sometimes on the cover are an optional flourish, not required. Omit unless deliberately reintroducing.
 
 ### Content slides
-- Background: solid white (`bg1` / `lt1`)
-- Title: top-left, offset 537,460 / 456,432 EMU (≈0.59" / 0.50"), width spans nearly the full slide width (11,117,083 EMU ≈ 12.16")
-- Title type: Aptos, regular weight (not bold, no "Light" variant — confirmed from master `titleStyle`), 48pt, TC Slate `#3A4B5C` (hardcoded, not theme-referenced), -20 letter-spacing, 100% line spacing
-- Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right corner, offset ≈11.10" / 6.86" from top-left, sized ≈1.66" × 0.37" — placed once on the slide master, inherited by every content layout automatically. Do not duplicate it on individual slides.
-- Body text font: Aptos throughout, set explicitly per text run — do not rely on the theme's default major font (which is Calibri Light and will apply silently if Aptos is not set per run)
+- Background: solid white (`bg1` / `lt1`).
+- Title: top-left, offset 537,460 / 456,432 EMU (≈0.59" / 0.50"), width ≈11,117,083 EMU (≈12.16").
+- Title type: Aptos, regular weight (not bold, no "Light"), 48pt, TC Slate `#3A4B5C` (hardcoded, not theme-referenced), -20 letter-spacing, 100% line spacing.
+- Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, offset ≈11.10" / 6.86", sized ≈1.66" × 0.37". Placed once on the slide master and inherited by every content layout. Do not duplicate it on individual slides.
+- Body text font: Aptos throughout, set explicitly per text run (the theme default is Calibri Light and applies silently if Aptos is not set per run).
+- **No all-caps kicker / eyebrow line above or below slide headings.** Use the heading alone with whitespace. (The one permitted exception is the small letter-spaced category label above a stat-card row, below.)
 
 ### Stat / data cards
 Used for executive summaries, KPI rows, and metric call-outs.
 
-- Shape: rounded rectangle, corner radius 6% (`adj val 6000`) — a subtle rounding, not a pill shape
-- Fill: solid white `#FFFFFF`
-- Border: 0.75pt (9525 EMU), TC Grey-adjacent `#E3E7EB`
-- No shadow, no gradient — `effectLst` empty, consistent with Section 6
-- **Do not add a colored top-border accent stripe to these cards.** Earlier production decks used a thin colored line across the top of each card to color-code by category (slate / blue / purple / green / yellow, inconsistently). This pattern was tested and rejected: a row of cards with colored top-borders reads as a generic AI-generated dashboard template, the same problem the icon-circle motif ban addresses in Section 4. Carry category distinction through section header labels above the card row (e.g., "DIVISION 1 | SAMPLES" in TC Text, small caps or letter-spaced) instead of through per-card color-coding.
-- Card label (e.g., "TOTAL SAMPLE UNITS"): small caps or uppercase, TC Text `#111A22`, muted weight
-- Big number: TC Slate or TC Text, bold, large size — this is the focal point of the card
-- Supporting line: muted grey, TC Text at reduced opacity or a documented grey, not an off-palette grey
+- Shape: rounded rectangle, corner radius 6% (`adj val 6000`) — a subtle rounding, not a pill.
+- Fill: solid white `#FFFFFF`.
+- Border: 0.75pt (9525 EMU), `#E1E5E8`.
+- No shadow, no gradient (`effectLst` empty), consistent with Section 6.
+- **No colored top-border accent stripe, and no left-side or any-side color-line border, on cards or boxes.** A colored edge line on a card, box, quote, or callout reads as generic AI-template filler (same reason as the icon-circle ban in Section 4). Carry category distinction through a section header label above the card row (e.g. "DIVISION 1 | SAMPLES" in TC Text, small caps or letter-spaced), not through per-card color or an edge stripe.
+- Card label (e.g. "TOTAL SAMPLE UNITS"): small caps or uppercase, TC Text `#111A22`, muted weight.
+- Big number: TC Slate or TC Text, bold, large — the focal point of the card.
+- Supporting line: muted grey from the ramp (`#8A9BAC` or `#6A7A88`), not an off-palette grey.
 
 ### Trend / delta indicators — approved functional exception
-Up/down change indicators (e.g., "▲ 193.2% MoM", "▼ 54.5% MoM") use red for decline and green for growth. This is a functional convention, parallel to the red/green rules already approved for financial spreadsheets in the xlsx context — it is not decorative color-coding and is not subject to the 60-30-10 yellow-ceiling rule or the card-accent ban above, because it is not a category indicator, it is a data signal attached to a specific number.
-- Decline: red `#DC3545`
-- Growth: TC Green `#6BA543`
-- This red is not used anywhere else in Trusscore visual identity — it is reserved exclusively for this functional purpose. Do not use it as a general accent color.
+Up/down change indicators (e.g. "▲ 193.2% MoM", "▼ 54.5% MoM") use red for decline and green for growth. This is a functional convention parallel to the red/green rules for financial spreadsheets; it is not decorative color-coding and is not subject to the 60-30-10 yellow ceiling or the card-accent ban, because it is a data signal attached to a specific number, not a category indicator.
+- Decline: red `#DC3545`.
+- Growth: TC Green `#6BA543`.
+- This red is reserved exclusively for this functional purpose and is used nowhere else in Trusscore visual identity. (Older decks used `#E05C5C` / `#C0392B` here; those are off-spec — standardize on `#DC3545`.)
 
 ### Callout / highlight boxes
-- Fill: light yellow tint `#FFF8EC`
-- Border: TC Yellow `#FEB100`
-- Used sparingly — one per slide maximum, reserved for a genuinely important takeaway, not a repeating per-slide device
-
----
+- Fill: light yellow tint `#FFF8EC`.
+- Border: TC Yellow `#FEB100`.
+- Used sparingly — one per slide maximum, reserved for a genuinely important takeaway, not a repeating per-slide device.
 
 ## 14c. HTML Dashboard Spec
 

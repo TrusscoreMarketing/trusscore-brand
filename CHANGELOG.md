@@ -2,6 +2,16 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.0] — 2026-07-07
+
+### Added
+- **`trusscore-pptx` skill:** new brand layer over the public pptx skill. Enforces Section 14b, builds new slides from the template's 26 named layouts, bundles the master template under `skills/trusscore-pptx/assets/`, and routes finished decks through de-slop for review.
+- **`de-slop` skill (brought in-repo):** the copy + visual review gate now lives under `skills/de-slop/`. Populated its Trusscore standards from the brand skill and the example decks: `references/checks/visual.md` (all design surfaces — web, HTML dashboards, decks, docs, social, diagrams), `references/checks/voice.md`, and `references/contexts/marketing.md`. `company-fit.md` and the support/sales context profiles remain placeholders pending strategy/ICP inputs.
+- **PowerPoint example decks** committed under `brand/pptx-examples/` as the reference source for the 14b revision.
+
+### Changed
+- **Section 14b (PowerPoint Visual Spec):** revised against two production decks. Added the slate-tinted neutral grey ramp (`#F5F6F7` → `#6A7A88`), a second heading dark (`#222B33`, alongside body `#111A22`), and a Slide Layouts menu (26 named layouts to build new slides from). Standardized the card border on `#E1E5E8` (supersedes `#E3E7EB`) and card radius at 6%. Extended the card top-stripe ban to left-side and any-side box/card borders, and banned all-caps kicker lines above/below headings (except the stat-card row label). Normalized near-duplicate colors to canon; reaffirmed `#DC3545` as the only decline red (flagged deck `#E05C5C`/`#C0392B` as off-spec) and rejected gold `#F4A700`.
+
 ## [1.3.0] — 2026-07-06
 
 ### Added
