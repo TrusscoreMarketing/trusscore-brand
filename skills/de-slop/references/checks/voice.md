@@ -44,9 +44,8 @@ Trusscore writes to four audiences and the register shifts by audience. Wrong-au
 
 ## 5. Capitalization and punctuation (Chicago 18th ed.)
 
-- Title Case: H1, H2, campaign headlines, product names. Sentence case: subtitles, body, blog headlines, email subject lines, social posts, H3+.
+- Mechanical em-dash and heading-case rules are owned by the AI writing tells check plus `checks/lint.py` — do not re-grade them here; this check grades register and phrasing only. (For reference, the standards live in brand-guidelines Sections 11–12.)
 - Single-sentence headlines take no period.
-- Em dashes: no spaces, `word—word`, maximum two per piece.
 - En dash for ranges (12–18 inches), hyphen for compounds (moisture-resistant).
 - **Oxford comma always**, in every list of three or more.
 - **No terminal period on bullet points** — bullets are fragments; a bullet that ends with a period is a finding. A bold lead-in label inside a bullet keeps its separator period; full-sentence callout boxes and body paragraphs keep normal end punctuation.

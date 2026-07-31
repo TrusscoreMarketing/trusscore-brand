@@ -40,6 +40,26 @@ TEMPLATE=os.path.join(os.path.dirname(__file__),"..","assets","Trusscore_Powerpo
 X3=[0.74,4.79,8.84]; CY=2.45; CW=3.75; CH=3.15          # 3-up card geometry
 LADDER=[(28,24),(24,20),(20,16)]                         # top/sub pt; 16 = hard floor
 
+# ---- snap-to-canon (Section 14b): imprecise re-entries and off-spec legacy values ----
+CANON={"3A4B5B":"3A4B5C",                                # theme-XML typo -> canonical slate
+       "6BA542":"6BA543",                                # green re-entry
+       "009BD7":"009BD6","0099D5":"009BD6",              # blue re-entries
+       "FDB116":"FEB100","F4A700":"FEB100",              # yellow re-entry + off-brand gold
+       "E05C5C":"DC3545","C0392B":"DC3545"}              # off-spec decline reds
+
+def snap_color(value):
+    """Snap a hex string or RGBColor to the canonical Section 14b palette value."""
+    hexval = str(value).lstrip("#").upper() if not isinstance(value,RGBColor) else str(value)
+    hexval = CANON.get(hexval,hexval)
+    return RGBColor.from_string(hexval)
+
+# ---- title sizing (Section 14b): 48pt start, shrink to fit, 32pt hard floor ----
+def title_size(text,width_in=12.16):
+    """Largest size 48->32 where the title fits one line; 32 means SHORTEN THE TITLE."""
+    for pt in range(48,31,-2):
+        if len(str(text)) <= int(width_in/(pt*0.45/72)): return pt
+    return 32
+
 # ---------- core ----------
 def open_deck(template=TEMPLATE):
     prs=Presentation(template)
@@ -55,10 +75,10 @@ def _add(prs,name): return prs.slides.add_slide(prs._td_layouts[name])
 def save(prs,path): prs.save(path); return path
 
 def _ctitle(slide,t):
-    slide.shapes.title.text=t
+    slide.shapes.title.text=t; pt=title_size(t)
     for p in slide.shapes.title.text_frame.paragraphs:
         for r in p.runs:
-            r.font.name="Aptos Light"; r.font.size=Pt(48); r.font.bold=False; r.font.color.rgb=SLATE
+            r.font.name="Aptos Light"; r.font.size=Pt(pt); r.font.bold=False; r.font.color.rgb=SLATE
 
 def _setind(p,marL,indent):
     pPr=p._p.get_or_add_pPr(); pPr.set('marL',str(marL)); pPr.set('indent',str(indent))
@@ -76,6 +96,8 @@ def pick_tier(items):
             total += lines*sub*lh/72 + 6/72
         if total<=usable: return (lab,sub)
     return LADDER[-1]
+
+body_ladder=pick_tier   # documented helper name (Section 14b body auto-tier ladder)
 
 def _body(slide,idx,items):
     tf=slide.placeholders[idx].text_frame; tf.clear(); first=True
@@ -192,6 +214,44 @@ def _callout(slide,text,y=4.75):
     r=p.add_run(); r.text=str(text).strip(); r.font.name="Aptos"; r.font.size=Pt(16); r.font.bold=True; r.font.color.rgb=SLATE  # callouts are full sentences: keep terminal punctuation
 
 def callout(slide,text,y=4.75): _callout(slide,text,y)   # add a callout to an existing slide
+
+def _tcell_borders(cell,color=BORDER,width_pt=0.75):
+    """Set all four cell borders via OOXML, in schema order (lnL,lnR,lnT,lnB first)."""
+    tcPr=cell._tc.get_or_add_tcPr()
+    for i,edge in enumerate(('lnL','lnR','lnT','lnB')):
+        tag=qn('a:'+edge)
+        for old in tcPr.findall(tag): tcPr.remove(old)
+        ln=tcPr.makeelement(tag,{'w':str(int(width_pt*12700)),'cap':'flat'})
+        fill=ln.makeelement(qn('a:solidFill'),{}); clr=ln.makeelement(qn('a:srgbClr'),{'val':str(color)})
+        fill.append(clr); ln.append(fill)
+        tcPr.insert(i,ln)   # lnL..lnB at indices 0-3, ahead of any a:*Fill child
+
+def table_slide(prs,title,headers,rows,col_widths=None):
+    """14b-compliant table: slate header row (white bold), white body rows with
+    0.75pt #E1E5E8 borders, Aptos throughout, default table style stripped."""
+    s=_add(prs,'Title Only'); _ctitle(s,title)
+    nrows=len(rows)+1; ncols=len(headers)
+    gt=s.shapes.add_table(nrows,ncols,Inches(0.74),Inches(1.75),Inches(11.85),Inches(0.4*nrows))
+    tbl=gt.table
+    tbl.first_row=False; tbl.horz_banding=False    # strip default banded style
+    if col_widths:
+        for j,w in enumerate(col_widths): tbl.columns[j].width=Inches(w)
+    for j,h in enumerate(headers):
+        c=tbl.cell(0,j); c.fill.solid(); c.fill.fore_color.rgb=SLATE
+        tfc=c.text_frame; tfc.text=str(h)
+        for p in tfc.paragraphs:
+            for r in p.runs:
+                r.font.name="Aptos"; r.font.size=Pt(14); r.font.bold=True; r.font.color.rgb=WHITE
+        _tcell_borders(c)
+    for i,row in enumerate(rows,1):
+        for j,val in enumerate(row):
+            c=tbl.cell(i,j); c.fill.solid(); c.fill.fore_color.rgb=WHITE
+            tfc=c.text_frame; tfc.text=str(val)
+            for p in tfc.paragraphs:
+                for r in p.runs:
+                    r.font.name="Aptos"; r.font.size=Pt(13); r.font.bold=False; r.font.color.rgb=TEXT
+            _tcell_borders(c)
+    return s
 
 def close(prs,headline,subline=""):
     s=_add(prs,'Ending1'); s.placeholders[0].text=headline

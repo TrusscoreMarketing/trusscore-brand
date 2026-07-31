@@ -61,6 +61,16 @@ Company Slop Check:
 
 ## Step C. Grade the fired checks in bundles of three
 
+**Mechanical lint runs first, at zero tokens.** Before spawning any grader, run the deterministic lint on text/markdown output (for docx/pptx, on the extracted text):
+
+```
+python references/checks/lint.py <file>
+```
+
+Its findings (spaced or excess em dashes, possessive "Trusscore's", banned words and abbreviations, terminal periods on bullets, best-effort heading case) feed the mechanical rows of the scorecard directly. LLM grading of the mechanical checks (AI writing tells, Artifacts, Readability) covers only what lint cannot decide — content patterns, the pulse check, layout artifacts. Do not re-flag what lint already decided, and never let an LLM grader contradict a deterministic lint result.
+
+**Company standard precedence.** Where a company editorial standard explicitly permits something a universal check bans, the company standard wins. Confirmed pair: ai-writing.md bans all em dashes, but the Trusscore brand-guidelines Section 12 permits up to two, unspaced, per piece — grade against Section 12; usage inside that limit is not a finding. Likewise ai-writing.md pattern 16 prefers sentence case, but Trusscore Section 11 mandates Title Case on H1/H2 — flag sentence-case H1/H2, not Title Case.
+
 Group the fired checks into bundles of up to three, in the order they appear in Step B. Spawn one subagent per bundle with the Task tool, **at most three subagents running at once** (a fourth bundle waits for a slot), **each on the Sonnet model** (this is review, not generation). The orchestrator never grades.
 
 Each subagent grades its three checks independently: it reads each check's own standard file and judges that check on its own, never letting one check's verdict color another. Per-check isolation is the point. It stops any single pass from rationalizing the output as fine.
