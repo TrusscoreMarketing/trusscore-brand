@@ -67,13 +67,13 @@ After: "covers the Big Bang, star formation, and current theories about dark mat
 
 ## Style patterns
 
-**13. Em dashes.** The hard one for us: no em dashes at all, anywhere. Use commas, periods, or restructure.
+**13. Em dashes.** The hard one for us: no em dashes at all, anywhere. Use commas, periods, or restructure. **Company precedence:** if the company's own editorial standard explicitly permits em dashes (Trusscore: maximum two per piece, unspaced — brand-guidelines Section 12), grade against that standard instead of this absolute ban. Spaced em dashes and counts above the company limit are still findings.
 
 **14. Boldface overuse.** Mechanically bolded terms mid-prose. Fix: remove the bolding.
 
 **15. Inline-header lists.** "**Thing:** sentence about the thing" bullets. Fix: convert to prose or a clean list without the bolded label.
 
-**16. Title Case in headings.** Every main word capitalized. Fix: sentence case.
+**16. Title Case in headings.** Every main word capitalized. Fix: sentence case. **Company precedence:** where the company standard mandates Title Case for specific levels (Trusscore: H1/H2 per brand-guidelines Section 11), Title Case there is correct — flag only levels the standard says are sentence case (H3+, subtitles).
 
 **17. Emojis decorating headings or bullets.** Fix: remove them. (Channel exceptions live in the Voice check, not here.)
 
@@ -109,4 +109,4 @@ What gives writing a pulse: real opinions and reactions, varied rhythm (short pu
 
 - Aligned: none of patterns 1 to 24, and it has a pulse.
 - Drift: a few soft tells (a stray "additionally," one rule-of-three), or clean but soulless. No hard guardrail break.
-- Misaligned: any em dash, AI-vocabulary cluster, chatbot artifact, knowledge-cutoff disclaimer, or sycophancy in something about to ship.
+- Misaligned: any em dash beyond a company-permitted allowance, AI-vocabulary cluster, chatbot artifact, knowledge-cutoff disclaimer, or sycophancy in something about to ship.
