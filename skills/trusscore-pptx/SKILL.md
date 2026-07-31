@@ -11,13 +11,13 @@ You are building a Trusscore-branded deck. Two skills work together and neither 
 1. **Public `pptx` skill = HOW to build.** All file mechanics come from it — creating from scratch (`pptxgenjs.md`), editing from a template (`editing.md`), extracting text, thumbnails, packing/unpacking, and the required QA render step. Read those files for the build method. Do not reimplement mechanics here.
 2. **This skill = HOW it must look and read.** It applies the Trusscore visual spec and overrides every public-skill default that conflicts with the brand. **When the two disagree, this skill wins.**
 
-The authoritative visual source is **Section 14b (PowerPoint Visual Spec)** in the `trusscore-brand-guidelines` skill, reverse-engineered from the production master template. The values are mirrored below for convenience, but if this file and Section 14b ever differ, **Section 14b is canon** — re-read it and follow it.
+The authoritative visual source is the **PowerPoint Visual Spec (Section 14b)**, which lives at **`references/pptx-spec.md` in the `trusscore-brand-guidelines` skill**, reverse-engineered from the production master template. The values are mirrored below for convenience, but if this file and that spec ever differ, **the brand skill's pptx-spec.md is canon** — re-read it and follow it.
 
 ---
 
 ## Order of operations (do not skip)
 
-1. **Load the brand.** Read the `trusscore-brand-guidelines` skill (Section 14b for visuals; the voice/identity/mechanics sections for copy). Apply account-level Trusscore preferences that are already always in effect.
+1. **Load the brand.** Read the `trusscore-brand-guidelines` skill (its `references/pptx-spec.md` for visuals; the core SKILL.md voice/editorial sections for copy). Apply account-level Trusscore preferences that are already always in effect.
 2. **Pick the build path** from the public `pptx` skill:
    - Editing or extending an existing Trusscore deck, or the master template is available → **template/editing path** (`editing.md`). This is preferred for Trusscore because it inherits the master slide's footer logo lockup and theme.
    - No template available → **from-scratch path** (`pptxgenjs.md`), then apply every value in "The 14b spec" below by hand.
@@ -29,9 +29,9 @@ The authoritative visual source is **Section 14b (PowerPoint Visual Spec)** in t
 
 ## Master template
 
-The production master is **`Trusscore_Amazon_Monthly_Report_May_2026.pptx`** (the file Section 14b was reverse-engineered from). Bundle this template with the skill (e.g. an `assets/` folder) and default to the editing path against it, because the master already carries: the 16:9 slide size, the theme, the slate cover fill, and the footer logo lockup placed once on the slide master. Building on it is faster and more correct than recreating chrome from scratch.
+The production master is bundled with this skill at **`assets/Trusscore_Powerpoint_Template.pptx`** — it is what `open_deck()` loads by default. Default to the editing path against it, because the master already carries: the 16:9 slide size, the theme, the slate cover fill, and the footer logo lockup placed once on the slide master. Building on it is faster and more correct than recreating chrome from scratch.
 
-> If the template file is not present in the session, say so and either ask for it or fall back to the from-scratch path and reconstruct the chrome from the 14b values below.
+> If the bundled template is somehow unavailable in the session, say so and either ask for it or fall back to the from-scratch path and reconstruct the chrome from the 14b values below.
 
 ---
 
@@ -192,11 +192,4 @@ The Trusscore review gate is the **`de-slop` skill**. Run it on the finished dec
 3. Its **Visual check** is what enforces this spec at review time (palette + 60-30-10, Aptos everywhere, no icon circles, no accent stripes, no left/any-side box borders, no all-caps kickers on headings, footer lockup not duplicated, one yellow keyword max on covers, one callout max per slide). For that to work, de-slop's `references/checks/visual.md` and `references/contexts/marketing.md` must be populated with the Trusscore design system — see note below.
 4. Then run the public `pptx` skill's required **QA render** and fix real layout issues (with the Aptos font caveat above).
 
-> **Setup dependency:** de-slop ships with placeholder `visual.md` / `voice.md` / `marketing.md` files. Until they're filled with the Trusscore system (from Section 14b + the brand skill's voice rules), the Visual and Voice checks grade against generic examples, not Trusscore. Populate them once (via de-slop's companion adapter skill, or by hand) so the gate is real. A silent pass on an unpopulated check is meaningless.
-
----
-
-## Draft notes / to confirm with the skill owner
-- Master template `Trusscore_Amazon_Monthly_Report_May_2026.pptx` should be bundled in this skill's `assets/` so the editing path always has it.
-- Decide whether to reconcile the all-caps ban with 14b's "small-caps label above a card row" allowance (currently kept as the one permitted exception).
-- Confirm the exact grey used for card supporting lines (14b says "a documented grey" — pin the hex).
+> **Setup status:** de-slop's `visual.md` / `voice.md` / `marketing.md` were populated with the Trusscore system on 2026-07-07, so the Visual and Voice checks grade against real standards. Two gaps remain: `company-fit.md` is still the placeholder template (the Company fit check skips until the adapter is run against the Trusscore Context docs), and generated files can drift when the brand skill changes — after any brand SKILL.md or pptx-spec.md edit, re-run the de-slop adapter so `visual.md` stays in sync. A silent pass on an unpopulated or stale check is meaningless.
