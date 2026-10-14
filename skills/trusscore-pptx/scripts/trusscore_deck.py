@@ -16,7 +16,11 @@ Usage:
     td.stats(prs, "What This Means", [("1","source of truth","one place"), ...], slate=1)
     td.flow(prs, "How They Work Together", [("Brand guidelines","The rulebook"), ...], callout="One source...")
     td.close(prs, "On Brand by Default", "Just ask, then de-slop it")
-    td.save(prs, "/path/out.pptx")
+    td.save(prs, "/path/out.pptx")          # refuses to save a deck with a stretched image
+
+Logos: layouts already carry them. If a slide truly needs one placed by hand, use
+td.logo(slide, "lockup-slate", x, y, w=2.0) (width OR height, never both), never add_picture
+with both dimensions. Audit any deck: python trusscore_deck.py check deck.pptx
 
 Sizing rule (Section 14b): body auto-tiers 28/24 -> 24/20 -> 20/16 (16pt hard floor);
 if a slide won't fit at the floor, pick_tier returns the floor and you should SPLIT the
@@ -31,10 +35,12 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 
 # ---- palette (locked) ----
-SLATE=RGBColor(0x3A,0x4B,0x5C); TEXT=RGBColor(0x11,0x1A,0x22); GREY=RGBColor(0x6A,0x7A,0x88)
+SLATE=RGBColor(0x3A,0x4B,0x5C); TEXT=RGBColor(0x11,0x1A,0x22); GREY=RGBColor(0x5A,0x6B,0x78)   # muted text: 5.1+:1 on white/LIGHT (AA)
 LIGHT=RGBColor(0xF5,0xF6,0xF7); BORDER=RGBColor(0xE1,0xE5,0xE8); YELLOW=RGBColor(0xFE,0xB1,0x00)
 WHITE=RGBColor(0xFF,0xFF,0xFF); LGREY=RGBColor(0xDD,0xE3,0xE8); TINT=RGBColor(0xFF,0xF8,0xEC)
 GREEN=RGBColor(0x6B,0xA5,0x43); RED=RGBColor(0xDC,0x35,0x45)   # functional status only
+NAVY=RGBColor(0x0F,0x1C,0x27)   # Dark Navy: only when darker than SLATE is needed; never TEXT with YELLOW
+# Contrast (Section 2): YELLOW text only on SLATE; GREEN/YELLOW never text on WHITE/LIGHT.
 
 TEMPLATE=os.path.join(os.path.dirname(__file__),"..","assets","Trusscore_Powerpoint_Template.pptx")
 X3=[0.74,4.79,8.84]; CY=2.45; CW=3.75; CH=3.15          # 3-up card geometry
@@ -52,7 +58,69 @@ def open_deck(template=TEMPLATE):
     return prs
 
 def _add(prs,name): return prs.slides.add_slide(prs._td_layouts[name])
-def save(prs,path): prs.save(path); return path
+
+def save(prs,path,check=True):
+    """Save the deck. Refuses to save if any picture is stretched (see check_images)."""
+    if check:
+        bad=check_images(prs)
+        if bad: raise ValueError("Stretched image(s), fix before saving:\n  "+"\n  ".join(bad))
+    prs.save(path); return path
+
+# ---------- logos (never stretched) ----------
+# Logo art comes straight from the master template, so it is the exact production file.
+# key: (layout name, or None for the slide master; shape name)
+LOGO_SRC={
+    'lockup-reverse':('Title1','Picture 10'),          # white wordmark + yellow truss + tagline, for slate (4.53:1)
+    'lockup-slate':('Section - General','Picture 4'),  # slate wordmark + yellow truss + tagline, for white (4.53:1)
+    'wordmark-slate':(None,'Picture 5'),               # slate wordmark + yellow truss, no tagline (6.84:1)
+    't-icon':('Title1','Graphic 16'),                  # white t + yellow truss; only alongside the full logo (1.26:1)
+}
+
+def _logo_blob(slide,kind):
+    layout,name=LOGO_SRC[kind]; master=slide.slide_layout.slide_master
+    owner=master if layout is None else next(l for l in master.slide_layouts if l.name==layout)
+    return next(sh for sh in owner.shapes if sh.name==name).image.blob
+
+def logo(slide,kind,x,y,w=None,h=None):
+    """Place a logo at (x,y) inches without distortion. Give w OR h; if both, it fits inside that box.
+    Use only when a layout does not already carry the logo (never duplicate the master footer)."""
+    import io
+    if w is None and h is None: raise ValueError("logo(): give a width or a height")
+    blob=_logo_blob(slide,kind)
+    pic=slide.shapes.add_picture(io.BytesIO(blob),Inches(x),Inches(y),width=Inches(w) if w else None,
+                                 height=None if w else Inches(h))
+    if w and h and pic.height>Inches(h):   # too tall for the box: size by height instead
+        r=pic.width/pic.height; pic.height=Inches(h); pic.width=int(Inches(h)*r)
+    return pic
+
+def _pictures(shapes,sx=1.0,sy=1.0):
+    from pptx.shapes.picture import Picture
+    from pptx.shapes.group import GroupShape
+    for sh in shapes:
+        if isinstance(sh,GroupShape):
+            ext=sh._element.grpSpPr.find(qn('a:xfrm')).find(qn('a:chExt'))
+            gx=sh.width/int(ext.get('cx')) if ext is not None and int(ext.get('cx')) else 1.0
+            gy=sh.height/int(ext.get('cy')) if ext is not None and int(ext.get('cy')) else 1.0
+            yield from _pictures(sh.shapes,sx*gx,sy*gy)
+        elif isinstance(sh,Picture):
+            yield sh,sx,sy
+
+def check_images(prs,tol=0.02):
+    """List every picture on a slide whose box does not match the image's own proportions
+    (crop included). An empty list means nothing is stretched. tol=0.02 is 2%."""
+    if isinstance(prs,str): prs=Presentation(prs)
+    bad=[]
+    for n,slide in enumerate(prs.slides,1):
+        for sh,sx,sy in _pictures(slide.shapes):
+            try: pw,ph=sh.image.size
+            except Exception: continue   # linked or unreadable image: skip
+            vw=pw*(1-sh.crop_left-sh.crop_right); vh=ph*(1-sh.crop_top-sh.crop_bottom)
+            if not (vw and vh and sh.width and sh.height): continue
+            off=(sh.width*sx/(sh.height*sy))/(vw/vh)-1
+            if abs(off)>tol:
+                bad.append(f"slide {n}: '{sh.name}' is {abs(off)*100:.0f}% too {'wide' if off>0 else 'tall'} "
+                           f"({sh.width/914400:.2f}\" x {sh.height/914400:.2f}\"; keep {vw/vh:.2f}:1)")
+    return bad
 
 def _ctitle(slide,t):
     slide.shapes.title.text=t
@@ -145,7 +213,8 @@ def cards(prs,title,items,slate=None):
         is_slate=(i==slate); fill=SLATE if is_slate else LIGHT
         c=_rrect(s,X3[i],CY,CW,CH,fill,None if is_slate else BORDER,radius=0.06)
         nameC=WHITE if is_slate else SLATE; descC=LGREY if is_slate else GREY
-        _cardtext(c,[(name,22,nameC,True,4),(role,16,YELLOW,True,10),(desc,16,descC,False,0)])
+        roleC=YELLOW if is_slate else GREY   # yellow text fails on light cards (1.7:1)
+        _cardtext(c,[(name,22,nameC,True,4),(role,16,roleC,True,10),(desc,16,descC,False,0)])
     return s
 
 def stats(prs,title,items,slate=None):
@@ -166,7 +235,7 @@ def flow(prs,title,nodes,callout=None):
     for i,(name,role) in enumerate(nodes[:3]):
         c=_rrect(s,fx[i],FY,FW,FH,WHITE,BORDER,radius=0.06)
         tf=c.text_frame; tf.word_wrap=True; tf.vertical_anchor=MSO_ANCHOR.MIDDLE
-        for j,(t,sz,col,b) in enumerate([(name,20,SLATE,True),(role,16,YELLOW,True)]):
+        for j,(t,sz,col,b) in enumerate([(name,20,SLATE,True),(role,16,GREY,True)]):
             p=tf.paragraphs[0] if j==0 else tf.add_paragraph(); p.alignment=PP_ALIGN.CENTER
             r=p.add_run(); r.text=t; r.font.name="Aptos"; r.font.size=Pt(sz); r.font.bold=b; r.font.color.rgb=col
     for ax in (4.27,8.47)[:max(0,len(nodes)-1)]:
@@ -182,7 +251,11 @@ def status_row(prs,title,items):
     for i,(label,color,desc) in enumerate(items[:3]):
         col=cmap.get(color,color) if not isinstance(color,RGBColor) else color
         c=_rrect(s,X3[i],CY,CW,CH-0.4,LIGHT,BORDER,radius=0.06)
-        _cardtext(c,[(label,22,col,True,8),(desc,16,GREY,False,0)],anchor=MSO_ANCHOR.MIDDLE,align=PP_ALIGN.CENTER)
+        # status colour goes on a truss marker (2.56:1); the label names the status in slate,
+        # because green/yellow text fails contrast on light cards
+        m=s.shapes.add_shape(MSO_SHAPE.PARALLELOGRAM,Inches(X3[i]+CW/2-0.23),Inches(CY+0.4),Inches(0.46),Inches(0.18))
+        m.fill.solid(); m.fill.fore_color.rgb=col; m.line.fill.background(); m.shadow.inherit=False
+        _cardtext(c,[(label,22,SLATE,True,8),(desc,16,GREY,False,0)],anchor=MSO_ANCHOR.MIDDLE,align=PP_ALIGN.CENTER)
     return s
 
 def _callout(slide,text,y=4.75):
@@ -202,3 +275,13 @@ def close(prs,headline,subline=""):
         p=sub.text_frame.paragraphs[0]; r=p.add_run(); r.text=subline
         r.font.name="Aptos"; r.font.size=Pt(20); r.font.bold=True; r.font.color.rgb=YELLOW
     return s
+
+if __name__=="__main__":
+    # Audit any .pptx (however it was built): python trusscore_deck.py check deck.pptx
+    import sys
+    if len(sys.argv)<3 or sys.argv[1]!="check": sys.exit("usage: python trusscore_deck.py check deck.pptx [...]")
+    failed=False
+    for path in sys.argv[2:]:
+        bad=check_images(path); failed|=bool(bad)
+        print(f"{path}: "+("no stretched images" if not bad else "\n  "+"\n  ".join(bad)))
+    sys.exit(1 if failed else 0)

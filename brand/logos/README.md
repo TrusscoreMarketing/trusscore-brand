@@ -15,10 +15,10 @@ The full logo master set for the team. The skill bundles only a lean subset (see
 |---|---|
 | `trusscore-logo-slate.svg` | Slate wordmark + yellow truss (primary, light backgrounds) |
 | `trusscore-logo-white.svg` | White wordmark + yellow truss (reversed, dark backgrounds) |
-| `trusscore-logo-onecolour-white.svg` | All-white lockup, for TC Yellow backgrounds |
+| `trusscore-logo-onecolour-white.svg` | All-white lockup, only for TC Yellow backgrounds or black-and-white print |
 | `trusscore-logo-tagline-slate.svg` | Slate lockup with "material + science" tagline |
 | `trusscore-logo-tagline-reverse.svg` | White lockup with tagline |
-| `trusscore-logo-tagline-onecolour-white.svg` | All-white lockup with tagline |
+| `trusscore-logo-tagline-onecolour-white.svg` | All-white lockup with tagline, only for TC Yellow backgrounds or black-and-white print |
 | `trusscore-truss-element.svg` | Solo truss mark (graphic accent) |
 | `trusscore-truss-outline-element.svg` | Truss mark, outline |
 | `t-icon-slate.svg` | T-icon, slate |

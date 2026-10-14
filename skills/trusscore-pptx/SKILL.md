@@ -53,7 +53,8 @@ td.stats(prs, "What This Means", [("1","label","sub"), ...], slate=1)     # big-
 td.flow(prs, "How They Work Together", [("name","role"), ...], callout="one takeaway")
 s = td.status_row(prs, "Reading a Scorecard", [("Good to go","green","Ship it"), ...]); td.callout(s, "...")
 td.close(prs, "Headline", "yellow subline")
-td.save(prs, out_path)
+td.logo(slide, "lockup-slate", x, y, w=2.0)              # ONLY if a slide needs a logo its layout lacks
+td.save(prs, out_path)                                   # refuses to save if any image is stretched
 ```
 
 `content()` auto-tiers the body to fit via `pick_tier` (28/24 → 24/20 → 20/16, 16pt hard floor). **If `pick_tier` returns the floor, that slide is too dense — split it or cut copy, don't ship crowded text.** Bullets, spacing, palette, and the no-terminal-period rule are applied for you; do not override font sizes by hand. For a bespoke slide the module doesn't cover, fall back to `python-pptx` but follow the 14b spec below.
@@ -83,13 +84,39 @@ Rules:
 
 ---
 
+## Logos — never stretched
+
+A stretched logo is the most visible brand failure a deck can have. It happens in three ways, and all three are blocked here:
+
+1. **Placing an image with both a width and a height.** `python-pptx` `add_picture(..., width, height)` and `pptxgenjs` `addImage({ w, h })` both force the image into that box and distort it. **Set one dimension only** and let the other follow the file. In `pptxgenjs`, if you must give a box, use `sizing: { type: "contain", w, h }`; never bare `w` + `h`.
+2. **Copying a size from the spec onto a different file.** The sizes in 14b are the boxes the *template's own* logo images occupy. The files in `brand/logos/` and `assets/logos/` have different proportions (the PNGs carry padding; the wordmark-only and tagline versions differ), so a spec size will not fit an arbitrary logo file. Size by width (or height) only, never both.
+3. **Swapping a logo into an existing picture frame** (editing path: replacing the image file or `r:embed` target) without resetting the frame's height to the new image's proportions.
+
+**How to place logos:**
+- **Default: don't.** Every layout already carries the correct logo at the correct size (cover lockup, cover T-icon, section footer, content footer, ending lockup). Building on layouts is the fix.
+- If a slide genuinely needs a hand-placed logo, use `td.logo(slide, kind, x, y, w=...)`. It pulls the exact art from the master template and locks proportions. Kinds: `lockup-reverse` (white, with tagline, for slate), `lockup-slate` (slate, with tagline, for white), `wordmark-slate` (slate, no tagline), `t-icon` (only alongside the full logo, Section 8).
+- **Audit before delivery.** `td.save()` refuses to save a deck with a stretched picture. For a deck built any other way (pptxgenjs, hand edits, a file someone sent), run `python scripts/trusscore_deck.py check deck.pptx` and fix every line it reports.
+
+**All-white logo:** the one-colour white logo is for TC Yellow backgrounds and black-and-white print only. Trusscore decks have no yellow backgrounds, so don't use it on a slide. Slate covers and dividers use the reversed logo (white wordmark with the yellow truss), which the layouts already carry.
+
+**Logo proportions (width : height).** If you compute a size by hand, use these:
+
+| Logo | Template art | `assets/logos` / `brand/logos` SVG | `brand/logos/png` PNG (padded) |
+|---|---|---|---|
+| Lockup with tagline (slate or reverse) | 4.53 : 1 | 4.66 : 1 | 3.95 : 1 |
+| Wordmark only, no tagline | 6.84 : 1 | 6.60 : 1 | 3.95 : 1 |
+| T-icon | 1.26 : 1 | 1.26 : 1 | 1.06–1.27 : 1 |
+| Truss mark alone | n/a | 2.71 : 1 | n/a |
+
+---
+
 ## Overrides — where the public pptx skill is WRONG for Trusscore
 
 The public skill gives generic "make it pop" advice. Several of its defaults directly conflict with Trusscore. Override them every time:
 
 | Public pptx skill says | Trusscore rule (override) |
 |---|---|
-| "Pick a bold, content-informed color palette"; "don't default to blue"; dark "premium" backgrounds | **No.** The palette is locked: TC Slate `#3A4B5C`, TC Yellow `#FEB100`, TC Blue `#009BD6`, TC Green `#6BA543`, White `#FFFFFF`. Covers/dividers are solid slate; content slides are solid white. Never invent a palette, never use an off-palette background, never use the public skill's sample palettes. Hold the 60-30-10 balance (≈60% white/light, ≈30% slate, ≤10% yellow). |
+| "Pick a bold, content-informed color palette"; "don't default to blue"; dark "premium" backgrounds | **No.** The palette is locked: TC Slate `#3A4B5C`, TC Yellow `#FEB100`, TC Blue `#009BD6`, TC Green `#6BA543`, White `#FFFFFF`, plus Dark Navy `#0F1C27` only where something darker than slate is needed. Never a black or near-black background. Covers/dividers are solid slate; content slides are solid white. Never invent a palette, never use an off-palette background, never use the public skill's sample palettes. Hold the 60-30-10 balance (≈60% white/light, ≈30% slate, ≤10% yellow). |
 | "Never default to Aptos" (a QA-rendering caveat) | **Trusscore IS Aptos.** Aptos is the brand font for Office output and must be set explicitly per text run (the theme's silent default is Calibri Light and must not win). The public warning is about QA-preview fidelity, not a brand rule — handle it via the Font/QA note below, do not swap the font. |
 | "Commit to a motif — icons in colored circles" | **Banned.** No circle containers on icons. Use Lucide outline icons only, uncontained. The Trusscore motif is the yellow truss mark, used per 14b (solo mark bottom-right on covers). |
 | "Every slide needs a visual element / avoid text-only slides" — pushes decorative maximalism | Favor **restraint**. Clean, whitespace-forward slides are on-brand. Add a visual when it carries meaning (a chart, a real install photo, a KPI card), not to fill space. Real installs / AI-cleaned real photos only — never stock or AI-generated-as-real imagery. |
@@ -120,7 +147,13 @@ This is the middle path between the public skill's "every slide needs a visual" 
 
 **Canonical colors.** Use `#3A4B5C` for slate in new work (title text hardcodes it; the theme swatch `#3A4B5B` is a one-digit typo — do not rely on it). Confirmed accents: TC Blue `#009BD6`, TC Green `#6BA543`, TC Yellow `#FEB100`.
 
-**Neutral grey ramp** (extracted from the example decks, approved as documented neutrals — all slate-tinted, light → dark): `#F5F6F7`, `#EEF1F3`, `#E8EAEC` (1pt hairline dividers), `#E1E5E8` (0.75pt card borders), `#DDE3E8`, `#CFD6DC`, `#8A9BAC` (muted labels), `#6A7A88` (muted supporting/caption text). The single documented TC Grey `#DFDBDA` remains valid alongside these. Use greys from this ramp for borders, panel fills, and muted text — never an off-palette neutral.
+**Neutral grey ramp** (extracted from the example decks, approved as documented neutrals — all slate-tinted, light → dark): `#F5F6F7`, `#EEF1F3`, `#E8EAEC` (1pt hairline dividers), `#E1E5E8` (0.75pt card borders), `#DDE3E8`, `#CFD6DC`, `#8A9BAC`, `#6A7A88`. The single documented TC Grey `#DFDBDA` remains valid alongside these. Use greys from this ramp for borders and panel fills — never an off-palette neutral. **For text, small muted text is `#5A6B78`**; `#6A7A88` is 18pt+ (or 14pt+ bold) only; `#8A9BAC` and TC Grey are never text.
+
+**Text contrast (Section 2 contrast table is canon).** Every text colour must be an approved pair for its background:
+- White and light greys/tints: TC Text, TC Slate, `#5A6B78`. Never TC Yellow (1.83), TC Green (2.96), `#8A9BAC`, or TC Grey.
+- TC Slate: white, TC Yellow (4.91), `#DDE3E8`. Never TC Text (1.96).
+- TC Yellow: TC Slate, or Dark Navy `#0F1C27` when darker is needed. Never TC Text (brand rule), never white (1.83). TC Yellow is never set on TC Text either.
+- Status (good / warning / problem): colour a shape or marker, and name the status in a TC Slate label. Green or yellow status text on a light card fails.
 
 **Two darks.** TC Text `#111A22` for body copy and captions; `#222B33` for a slightly lighter heading dark (headings only). Do not use `#222B33` for body.
 
@@ -132,9 +165,9 @@ This is the middle path between the public skill's "every slide needs a visual" 
 
 **Cover / section-divider slides**
 - Background: solid TC Slate `#3A4B5B` (theme `accent1`).
-- Logo lockup (white wordmark + yellow truss mark + "material + science" tagline): top-left, offset 537,460 / 473,468 EMU (≈0.59" / 0.52"), sized 3,898,508 × 861,773 EMU (≈4.26" × 0.94").
+- Logo lockup (white wordmark + yellow truss mark + "material + science" tagline): top-left, offset 537,460 / 473,468 EMU (≈0.59" / 0.52"), sized 3,898,508 × 861,773 EMU (≈4.26" × 0.94", 4.53 : 1).
 - Title: white, bold, Aptos, below the lockup. **One** keyword may be set in TC Yellow for emphasis; the rest stays white. Never yellow more than one phrase.
-- Solo truss mark (solid TC Yellow `#FEB100`, no wordmark): bottom-right, offset ≈11.56" / 6.18", sized ≈1.18" × 0.93".
+- T-icon (white "t" with the yellow truss mark): bottom-right, offset ≈11.56" / 6.18", sized ≈1.18" × 0.93" (1.26 : 1). This is the T-icon, not the truss mark alone; it is valid here because the full lockup is on the same slide (Section 8). Never put the truss-mark-only file in this box (it is 2.71 : 1 and would stretch to twice its height).
 - The three light-grey outlined parallelograms sometimes seen on the cover are an optional flourish, **not** required. Omit unless deliberately reintroducing.
 
 **Content slides**
@@ -142,7 +175,7 @@ This is the middle path between the public skill's "every slide needs a visual" 
 - Title: top-left, offset 537,460 / 456,432 EMU (≈0.59" / 0.50"), width ≈11,117,083 EMU (≈12.16").
 - Title type: **Aptos Light** (confirmed from the master `titleStyle`), **48pt to start**, TC Slate `#3A4B5C` (hardcoded), -20 letter-spacing, 100% line spacing. Not bold.
 - **Title sizing:** start at 48pt. If a title is too long for one comfortable line, reduce to fit down to a **hard floor of 32pt**; if it still will not fit at 32pt, **shorten the title** rather than going smaller. A title must not dominate the top of the slide.
-- Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, ≈11.10" / 6.86", ≈1.66" × 0.37". It lives on the slide master and is inherited — **do not duplicate it on individual slides.**
+- Footer logo (slate wordmark + yellow truss mark, **no tagline**): bottom-right, ≈11.37" / 6.99", ≈1.62" × 0.24" (6.84 : 1). It lives on the slide master and is inherited — **do not duplicate it on individual slides.** (Section dividers carry the tagline lockup instead: ≈11.10" / 6.87", ≈1.66" × 0.37", 4.53 : 1. Do not mix up the two sizes; each is only correct for its own file.)
 - Body font: Aptos throughout, set explicitly per run.
 - **Bullet levels:** top-level bullets use the solid yellow truss glyph, sub-bullets the outline truss glyph (both built into the master body style, levels 1 and 2). For a label plus supporting copy, put the label on the top bullet (bold, no period) and the copy on an outline sub-bullet — this is the preferred deck pattern. No terminal period on any bullet.
 - **Body type scale — auto-tier ladder:** pick the largest step where all content fits without crowding: **28/24** (default, ≤3 short items) → **24/20** (3–4 items or a wrapping line) → **20/16** (dense; 16 is the hard floor). If it won't fit at 20/16, **split the slide or cut copy** — never below 16. Reduce words before size. Card labels, captions, callouts, flow-node text: 16–22pt. Auto-fit is a backstop only. (Industry: title 36–44, body 24–28, captions 18–20; Trusscore titles 48.)
@@ -155,7 +188,8 @@ This is the middle path between the public skill's "every slide needs a visual" 
 - **No colored top-border accent stripe** on cards (tested and rejected — reads as generic AI dashboard). Carry category distinction through a section header label above the card row, not per-card color.
 - Card label (e.g. "TOTAL SAMPLE UNITS"): small caps / uppercase, TC Text `#111A22`, muted weight.
 - Big number: TC Slate or TC Text, bold, large — the focal point.
-- Supporting line: muted grey / TC Text at reduced opacity — a documented grey, not an off-palette grey.
+- Supporting line: muted grey `#5A6B78` (AA at any size on white and light greys). Not `#8A9BAC`, and `#6A7A88` only at 18pt+.
+- Role or category text on a white or light card: `#5A6B78` or TC Slate. TC Yellow text only on a slate card.
 - **Card-row emphasis variant:** a lone card stays white, but in a *row* of cards fills may vary across white, ramp grey (`#F5F6F7`/`#EEF1F3`), light-yellow tint (`#FFF8EC`), or full TC Slate `#3A4B5C` for rhythm. Exactly one dark-slate card is the stand-out (number in TC Yellow, label white). One slate card per row max; never every card a different color; no yellow-tint plus blue fills in one row. Fill-for-emphasis, not an edge stripe.
 
 **Trend / delta indicators — approved functional exception**
@@ -189,6 +223,7 @@ The Trusscore review gate is the **`de-slop` skill**. Run it on the finished dec
 
 1. **Run de-slop on the deck** (e.g. "de-slop this deck", or point it at the .pptx path). It classifies the output as visual + copy, marketing context, and grades it against the Trusscore standard files, returning one scorecard: what's off, the governing rule, and a suggestion.
 2. **de-slop detects and suggests — it never edits.** You (this skill) own the fixes. Apply the fixes it flags, then re-run if any blockers fired.
+2b. **Run the stretch check** on the final file: `python scripts/trusscore_deck.py check deck.pptx`. It must report "no stretched images". This applies to every Trusscore deck, including ones built with pptxgenjs or edited by hand.
 3. Its **Visual check** is what enforces this spec at review time (palette + 60-30-10, Aptos everywhere, no icon circles, no accent stripes, no left/any-side box borders, no all-caps kickers on headings, footer lockup not duplicated, one yellow keyword max on covers, one callout max per slide). For that to work, de-slop's `references/checks/visual.md` and `references/contexts/marketing.md` must be populated with the Trusscore design system — see note below.
 4. Then run the public `pptx` skill's required **QA render** and fix real layout issues (with the Aptos font caveat above).
 

@@ -2,6 +2,22 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.7] — 2026-10-14
+
+### Fixed
+- **Stretched logos in decks.** Root causes: (1) Section 14b gave the content-slide footer as the tagline lockup at 1.66" × 0.37"; the master footer is actually the wordmark only at 1.62" × 0.24", so a logo placed to the written spec came out about 34% too tall. (2) The cover's bottom-right mark was described as the "solo truss mark" but is the T-icon (1.26 : 1); the truss-only file (2.71 : 1) placed in that box stretches to twice its height. The asset READMEs pointed to the truss-only file for the cover. (3) Nothing told builds to lock proportions, and both python-pptx and pptxgenjs distort an image given a width and a height.
+- Corrected the cover and footer logo specs in Section 14b, the `trusscore-pptx` mirror, and the asset READMEs, with the proportions of each logo file.
+
+### Added
+- **Builder stretch guard (`trusscore_deck.py`):** `logo()` places a logo from the master template with proportions locked; `save()` refuses to save a deck containing a stretched picture; `check_images()` and `python trusscore_deck.py check deck.pptx` audit any deck, however it was built.
+- **All-white logo restricted (Section 8).** The one-colour white logo is used only on TC Yellow backgrounds or in black-and-white print; slate and dark backgrounds use the reversed logo with the yellow truss. Previously Section 8 also allowed it on midtone backgrounds. Mirrored into the Do Nots, the Section 15 checklist, the asset READMEs, the `trusscore-pptx` skill, and the `de-slop` visual check.
+- **Approved text and background contrast pairs (Section 2).** Replaced the Smart Text table with a full contrast table built from the accessible brand colours grid (`brand/color/accessible-brand-colors.webp`), with WCAG ratios, plus TC Blue, TC Green, the light tints, and the grey ramp. Fixes several failures the old rules allowed: white text on TC Green (2.96) and TC Blue (3.15, large only), TC Grey as secondary text (1.37), and `#8A9BAC` / `#6A7A88` as small muted text. Small muted text is now `#5A6B78` (already the dashboard secondary text). Mirrored into Section 14b, the Section 15 checklist, the `trusscore-pptx` skill, and the `de-slop` visual check.
+- **Dark Navy `#0F1C27` added to the palette (Section 2):** the darker option when TC Slate is not dark enough, such as text on TC Yellow or a deeper dark surface. Added a Dark Navy background section with approved on-colours.
+- **TC Text and TC Yellow never together:** no TC Text on yellow and no yellow on TC Text. Primary CTA buttons (yellow fill) now use TC Slate text instead of TC Text in all four button specs. Caption text on white was TC Grey (1.37:1) and is now TC Text or `#5A6B78`.
+- **Backgrounds are always a brand colour:** white, an approved tint, TC Yellow, TC Slate, or Dark Navy. Never black, near-black, TC Text, or an off-palette dark, even when a format skill or template defaults to dark mode. Mirrored into the checklist, the `trusscore-pptx` palette override, and the `de-slop` visual check.
+- **Builder contrast fixes (`trusscore_deck.py`):** card and flow role labels were TC Yellow on white/light grey (about 1.7:1) and are now `#5A6B78` (yellow stays on slate cards); status cards had green or yellow label text and now use a coloured truss marker with a TC Slate label; muted supporting text moved from `#6A7A88` to `#5A6B78`.
+- "Logos — never stretched" section in the `trusscore-pptx` skill (how stretching happens, how to place logos, a proportions table); stretch check added to the deck review steps, the Section 15 checklist, Section 8 Do Nots, and the `de-slop` visual check.
+
 ## [1.4.6] — 2026-07-08
 
 ### Fixed

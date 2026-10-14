@@ -8,10 +8,10 @@ Status of the brand asset library. Checked = in the repo. Keep the skill `assets
 
 - [x] `trusscore-logo-slate.svg` — primary
 - [x] `trusscore-logo-white.svg` — reversed (also the no-tagline version the dashboard uses, Section 14c)
-- [x] `trusscore-logo-onecolour-white.svg` — for TC Yellow backgrounds
+- [x] `trusscore-logo-onecolour-white.svg` — only for TC Yellow backgrounds or black-and-white print
 - [x] `trusscore-logo-tagline-slate.svg` — tagline lockup
-- [x] `trusscore-logo-tagline-reverse.svg` — white tagline lockup (PowerPoint footer)
-- [x] `trusscore-truss-element.svg` — solo truss mark (PowerPoint cover)
+- [x] `trusscore-logo-tagline-reverse.svg` — white tagline lockup (PowerPoint cover)
+- [x] `trusscore-truss-element.svg` — truss mark alone, graphic accent (not the PowerPoint cover mark, which is the T-icon)
 
 ## 2. Full logo library → `brand/logos/`
 

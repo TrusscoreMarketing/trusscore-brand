@@ -82,15 +82,16 @@ Rendered as one line where space allows. When broken to two lines, "Goodbye dryw
 |----------------|-----------|-------|
 | TC Slate       | `#3A4B5C` | Primary brand color, headings, design elements |
 | TC Text  | `#111A22` | Body text only — never use as a design element |
+| Dark Navy | `#0F1C27` | The darker option when TC Slate is not dark enough: text on TC Yellow, or a deeper dark surface. Use sparingly; TC Slate stays the primary dark |
 | TC Yellow      | `#FEB100` | Logo truss mark, graphics, accents — **NEVER for text on white** |
 | TC Grey        | `#DFDBDA` | Backgrounds, neutral elements |
 | White          | `#FFFFFF` | Reversed logo, light backgrounds |
 
 **Critical accessibility rule:** TC Yellow (`#FEB100`) has a 1.9:1 contrast ratio on white — it fails WCAG and must never be used for body or headline text on white backgrounds unless a size threshold approved by the brand team has been met.
 
-**TC Text (`#111A22`) is reserved for body copy and captions on light backgrounds only.** Do not use it as a heading colour, shape fill, background, or design element. It is never used on TC Yellow backgrounds — use TC Slate `#3A4B5C` instead.
+**TC Text (`#111A22`) is reserved for body copy and captions on light backgrounds only.** Do not use it as a heading colour, shape fill, background, or design element. TC Text and TC Yellow never appear together in either direction: no TC Text on a TC Yellow background, and no TC Yellow on TC Text. On yellow, use TC Slate `#3A4B5C`, or Dark Navy `#0F1C27` when something darker than slate is needed.
 
-**TC Grey (`#DFDBDA`) is approved for borders, card fills, dividers, and secondary body text only.** It is not approved as a section background fill due to its pinkish-warm undertone sitting outside the cool/warm tint families used for section backgrounds.
+**TC Grey (`#DFDBDA`) is approved for borders, card fills, and dividers only.** It is never a text colour (1.37:1 on white). It is not approved as a section background fill due to its pinkish-warm undertone sitting outside the cool/warm tint families used for section backgrounds.
 
 ### Shape and Accent Color Cycling
 
@@ -107,18 +108,31 @@ For non-text shapes, graphic elements, dividers, icons, and decorative accents i
 |---|---|---|
 | TC Blue | `#009BD6` | Cool mid-blue; pairs with TC Slate without competing |
 | TC Green | `#6BA543` | Muted green; grounded, works in agricultural/commercial contexts |
-| TC Light Slate | `#6B7F8E` | Lighter tint of TC Slate; good for secondary elements |
+| TC Light Slate | `#6B7F8E` | Lighter tint of TC Slate; good for secondary elements and large text only (4.16:1 on white) |
 | TC Yellow Tint | `#FFF0C2` | Very light yellow for subtle background fills |
 
-### Smart Text Color on Backgrounds
+### Smart Text Color on Backgrounds (approved contrast pairs)
 
-Apply text color based on background to ensure legibility:
+Every text colour must be an approved pair for its background. Ratios are WCAG 2.2 (Section 7): **AA** = 4.5:1, fine for any text; **Large only** = 3:1, allowed only for large text (18pt / 24px and up, or 14pt / 18.66px bold and up); **AAA** = 7:1. Visual reference: `brand/color/accessible-brand-colors.webp`.
 
-| Background | Use Text Color |
-|---|---|
-| White / TC Grey / TC Yellow Tint / any light background | TC Text `#111A22` |
-| TC Slate / TC Blue / TC Green / any dark background | White `#FFFFFF` |
-| TC Yellow `#FEB100` | TC Text `#111A22` (TC Yellow on white fails WCAG; when yellow IS the background, dark text is required) |
+| Background | Approved text colours | Never use as text on it |
+|---|---|---|
+| White `#FFFFFF` | TC Text `#111A22` (17.58, AAA) · TC Slate `#3A4B5C` (8.97, AAA) · muted grey `#5A6B78` (5.51, AA) · decline red `#DC3545` (4.53, AA, data signals only) | TC Yellow (1.83) · TC Grey `#DFDBDA` (1.37) · mid grey `#B9B8B8` (1.98) · `#8A9BAC` (2.85) · TC Green (2.96) · TC Blue (3.15, large only at best) |
+| Light tints and ramp greys (`#F3F5F7`, `#F5F6F7`, `#EEF1F3`, `#E8EBF0`, `#FFF8EC`, `#FFF0C2`) | TC Text (AAA) · TC Slate (7.5+, AAA) · muted grey `#5A6B78` (5.1, AA) | TC Yellow (about 1.7) · TC Green (2.74) · `#8A9BAC` · TC Grey |
+| TC Slate `#3A4B5C` | White (8.97, AAA) · TC Yellow (4.91, AA) · `#DDE3E8` (6.93, AA) · mid grey `#B9B8B8` (4.53, AA) · white at 65% opacity (4.89, AA) | TC Text `#111A22` (1.96) and Dark Navy `#0F1C27` (1.93) |
+| TC Yellow `#FEB100` | TC Slate (4.91, AA) · Dark Navy `#0F1C27` (9.46, AAA) when darker is needed | TC Text (brand rule, though it passes contrast) · White (1.83) · mid grey `#B9B8B8` (1.08) |
+| Mid grey `#B9B8B8` | TC Slate (4.53, AA) · Dark Navy `#0F1C27` (8.73, AAA) | White (1.98) · TC Yellow (1.08) |
+| Dark Navy `#0F1C27` | White (17.27, AAA) · TC Yellow (9.46, AAA) · mid grey `#B9B8B8` (8.73, AAA) | TC Slate (1.93) |
+| TC Blue `#009BD6` | TC Text (5.57, AA). White is large only (3.15) | TC Slate (2.84) |
+| TC Green `#6BA543` | TC Text (5.93, AA) | White (2.96) · TC Slate (3.03, large only) |
+
+Rules that follow from the table:
+- **TC Yellow text only on TC Slate or Dark Navy.** Never on white, tints, greys, or photos without a slate panel behind it.
+- **On a TC Yellow background, text is TC Slate, or Dark Navy when darker is needed.** Never TC Text, never white.
+- **TC Yellow never sits on TC Text.** TC Text is a text colour, not a surface; for a dark surface under yellow, use TC Slate or Dark Navy.
+- **Small muted text is `#5A6B78`.** `#6A7A88` (4.42) and TC Light Slate `#6B7F8E` (4.16) are large text only; `#8A9BAC` and TC Grey are never text.
+- **Status colours are not text colours on light backgrounds.** TC Green and TC Yellow fail as text on white and tints. Show status with a coloured shape or marker beside a TC Slate or TC Text label that names the status; the label carries the meaning, the colour supports it. Decline red `#DC3545` passes as text on white.
+- **TC Blue and TC Green are fills for shapes and graphics.** If text must sit on them, it is TC Text.
 
 **Never place TC Yellow text on a white background.** If yellow text is required, it must be on a dark background (TC Slate or equivalent) where contrast is sufficient.
 
@@ -251,6 +265,8 @@ Background fills on sections are permitted but must earn their place through con
 
 Each background has a defined set of approved text, icon, button, and border colours. Only these combinations are permitted.
 
+**Backgrounds are always a brand colour.** Use white (the default), an approved tint, TC Yellow, TC Slate, or Dark Navy `#0F1C27` when something darker than slate is needed. Never black (`#000000`), near-black, TC Text `#111A22`, or any other off-palette dark, even when a format skill, template, or theme defaults to a dark mode. When a dark surface is needed, it is TC Slate first, Dark Navy second.
+
 **TC Grey `#DFDBDA` — borders, card fills, and body text only**
 TC Grey is an official brand colour but has a pinkish-warm undertone that sits outside the cool/warm tint families used for section backgrounds. It is not approved as a section background fill. Approved uses:
 - Card and panel borders: `0.5px solid #DFDBDA`
@@ -266,10 +282,10 @@ TC Grey is an official brand colour but has a pinkish-warm undertone that sits o
 |---|---|
 | Headings (H1, H2, H3) | TC Slate `#3A4B5C` |
 | Body copy | TC Text `#111A22` |
-| Captions | TC Text `#111A22` or TC Grey `#DFDBDA` |
+| Captions | TC Text `#111A22` or muted grey `#5A6B78` |
 | Eyebrow / label | TC Yellow `#FEB100` |
 | Icons | TC Slate `#3A4B5C` |
-| Primary CTA button | TC Yellow fill, TC Text text |
+| Primary CTA button | TC Yellow fill, TC Slate text |
 | Secondary CTA button | TC Slate outline |
 | Borders / dividers | TC Grey `#DFDBDA` |
 | **Never** | TC Yellow as text |
@@ -288,7 +304,7 @@ Same rules as white. Tint is too light to affect contrast meaningfully.
 | Body copy | TC Text `#111A22` |
 | Eyebrow / label | TC Yellow `#FEB100` |
 | Icons | TC Slate `#3A4B5C` |
-| Primary CTA button | TC Yellow fill, TC Text text |
+| Primary CTA button | TC Yellow fill, TC Slate text |
 | Secondary CTA button | TC Slate outline |
 | Borders / dividers | TC Slate `#3A4B5C` — TC Grey has insufficient contrast at this tint level |
 | **Never** | TC Yellow as text — TC Grey borders |
@@ -334,7 +350,7 @@ Maximum once per layout. Counts as full 10% yellow allocation. Neutral buffer se
 | Icons | TC Slate `#3A4B5C` |
 | Primary CTA button | TC Slate fill, white text |
 | Secondary CTA button | White outline (2px border) — paired with TC Slate primary only, never standalone |
-| **Never** | TC Yellow text or elements — invisible · TC Text — use TC Slate instead · White body copy — fails contrast · TC Grey — lost against yellow |
+| **Never** | TC Yellow text or elements — invisible · TC Text — use TC Slate, or Dark Navy when darker is needed · White body copy — fails contrast · TC Grey — lost against yellow |
 
 **White on TC Yellow rule:** White text on TC Yellow is permitted only when all three conditions are met simultaneously: (1) minimum 36px display size, (2) Bold or ExtraBold weight (700+), (3) maximum 6 words — never a full sentence or body copy. Below this threshold, TC Slate `#3A4B5C` is the only approved text colour.
 
@@ -348,14 +364,26 @@ Maximum once per layout. Counts as full 10% yellow allocation. Neutral buffer se
 | Captions | White `rgba(255,255,255,0.65)` |
 | Eyebrow / label | TC Yellow `#FEB100` |
 | Icons | TC Yellow `#FEB100` |
-| Primary CTA button | TC Yellow fill, TC Text text |
+| Primary CTA button | TC Yellow fill, TC Slate text |
 | Secondary CTA button | White outline |
 | **Never** | TC Text — invisible · TC Grey — insufficient contrast · TC Yellow as body text — permitted for eyebrow/label only |
+
+#### Dark Navy `#0F1C27` — deepest dark (use sparingly)
+Only where TC Slate is not dark enough. TC Slate stays the default dark surface.
+| Element | Approved colour |
+|---|---|
+| Headings | White `#FFFFFF` |
+| Body copy | White `rgba(255,255,255,0.85)` |
+| Captions | White `rgba(255,255,255,0.65)` |
+| Eyebrow / label | TC Yellow `#FEB100` |
+| Icons | TC Yellow `#FEB100` |
+| Primary CTA button | TC Yellow fill, TC Slate text |
+| **Never** | TC Slate text (1.93:1) · TC Text — invisible · placing it next to a TC Slate section without a light buffer |
 
 ---
 
 ### Alternating rhythm rule
-When multiple sections use background fills in sequence, follow a light-to-dark or varied rhythm. Never place two high-weight backgrounds (TC Yellow, TC Slate) adjacent to each other — always separate with a light tint or white section.
+When multiple sections use background fills in sequence, follow a light-to-dark or varied rhythm. Never place two high-weight backgrounds (TC Yellow, TC Slate, Dark Navy) adjacent to each other — always separate with a light tint or white section.
 
 Suggested sequence for multi-section layouts:
 White → Slate 8% or Grey 30% → Slate 15% or Grey 50% → TC Slate → white
@@ -409,7 +437,7 @@ TC Yellow sections stand alone — never adjacent to TC Slate or another yellow-
 
 | Tier | Background | Text | Border | Use for |
 |---|---|---|---|---|
-| Primary | TC Yellow `#FEB100` | TC Text `#111A22` | None | Main CTA — one per section maximum |
+| Primary | TC Yellow `#FEB100` | TC Slate `#3A4B5C` | None | Main CTA — one per section maximum |
 | Primary (on yellow bg) | TC Slate `#3A4B5C` | White `#FFFFFF` | None | Primary CTA when section background is TC Yellow |
 | Secondary (light bg) | Transparent | TC Slate `#3A4B5C` | `1px solid #3A4B5C` | Supporting actions on white or grey backgrounds |
 | Secondary (dark bg) | Transparent | White `#FFFFFF` | `1px solid #FFFFFF` | Supporting actions on TC Slate backgrounds |
@@ -593,7 +621,7 @@ All text must meet WCAG 2.2 Level AA against its background:
 | Large text (24px+, or 18.66px+ bold) | 3:1 |
 | UI components and meaningful graphics | 3:1 |
 
-This is why TC Yellow `#FEB100` (1.9:1 on white) is never text on a light background — see Section 2. TC Text `#111A22` on white and white on TC Slate both pass comfortably.
+This is why TC Yellow `#FEB100` (1.83:1 on white) is never text on a light background. The full list of approved text and background pairs is in Section 2. TC Text `#111A22` on white and white on TC Slate both pass comfortably.
 
 ---
 
@@ -602,13 +630,14 @@ This is why TC Yellow `#FEB100` (1.9:1 on white) is never text on a light backgr
 ### Variants
 - **Primary:** Wordmark with TC Yellow truss mark on white or light backgrounds
 - **Reversed:** White wordmark with TC Yellow truss mark on dark/TC Slate backgrounds
-- **One-colour:** All white or all slate for black-and-white print or midtone backgrounds where the yellow truss is compromised
+- **One-colour white:** all white, including the truss mark. Use it **only on TC Yellow backgrounds** (where a yellow truss would disappear) **or in black-and-white print**. Never on white, slate, dark, photo, or midtone backgrounds in colour work; on slate or dark backgrounds use the reversed logo (white wordmark with the yellow truss).
+- **One-colour slate:** all slate, for black-and-white print or midtone backgrounds where the yellow truss is compromised
 
 ### Marks used on their own
 
 Two marks exist, and they follow opposite rules:
 
-- **Truss mark** — the yellow parallelogram/truss shape. It may be used on its own as a graphic accent. See Section 3b for approved decorative uses and Section 14b for the solo truss mark on the PowerPoint cover. It is an accent, not a logo, and never carries brand identification by itself.
+- **Truss mark** — the yellow parallelogram/truss shape. It may be used on its own as a graphic accent. See Section 3b for approved decorative uses. (The mark in the bottom-right of the PowerPoint cover is the T-icon, not the truss mark alone; see Section 14b.) It is an accent, not a logo, and never carries brand identification by itself.
 - **T-icon** — the combined monogram pairing the truss with the "T" letterform. It may stand alone in exactly one place: as a **favicon** (or the equivalent app or browser tile). In every other use it must appear with the full Trusscore logo visible, or with "trusscore.com" set nearby, so the company name reads. Trusscore is not recognised by the icon alone, so outside the favicon the T-icon never identifies the brand by itself.
 
 **Favicons and app tiles:** the T-icon is the mark used here — this is its only standalone use. Everywhere else (avatars, watermarks, badges, headers, stamps), either pair the T-icon with the full logo or "trusscore.com," or use the full logo instead.
@@ -618,9 +647,10 @@ Two marks exist, and they follow opposite rules:
 - Never adjust letter spacing in the wordmark
 - Never change the case of the wordmark
 - Never change wordmark color to anything other than TC Slate or white
-- Never change the truss mark color to anything other than TC Yellow (or TC Blue/Green for approved special cases)
+- Never change the truss mark color to anything other than TC Yellow (or TC Blue/Green for approved special cases). The one exception is the one-colour white logo, which is used only on TC Yellow backgrounds or in black-and-white print
+- Never use the all-white (one-colour white) logo anywhere except a TC Yellow background or black-and-white print
 - Never use the T-icon (the truss-plus-T monogram) on its own except as a favicon — in every other use, pair it with the full logo or with "trusscore.com" nearby
-- Never stretch or distort the logo in any way
+- Never stretch or distort the logo in any way. Mechanically: set the logo's width **or** its height, never both, and let the other follow the file. Never copy a size from one logo file onto another (the SVG, PNG, tagline, and wordmark-only versions all have different proportions). In HTML use `height: Npx; width: auto` (or `object-fit: contain`); in PowerPoint see Section 14b.
 - Never modify the tagline lock-up
 - Never place the logo on busy patterns or backgrounds that compromise legibility
 
@@ -914,7 +944,7 @@ This spec is reverse-engineered from the production master template and confirme
 
 **Confirmed accent values:** TC Blue `#009BD6`, TC Green `#6BA543`, TC Yellow `#FEB100`.
 
-**Neutral grey ramp (documented).** Trusscore decks use a full slate-tinted neutral scale, not the single TC Grey `#DFDBDA`. All of the following are approved neutrals (light → dark): `#F5F6F7`, `#EEF1F3`, `#E8EAEC` (1pt hairline dividers), `#E1E5E8` (0.75pt card borders), `#DDE3E8`, `#CFD6DC`, `#8A9BAC` (muted labels), `#6A7A88` (muted supporting/caption text). TC Grey `#DFDBDA` remains valid alongside these. Use greys from this ramp for borders, panel fills, and muted text; never an off-palette neutral. Snap imprecise re-entries to canon: `#3A4B5B`→`#3A4B5C`, `#6BA542`→`#6BA543`, `#009BD7`/`#0099D5`→`#009BD6`, `#FDB116`→`#FEB100`.
+**Neutral grey ramp (documented).** Trusscore decks use a full slate-tinted neutral scale, not the single TC Grey `#DFDBDA`. All of the following are approved neutrals (light → dark): `#F5F6F7`, `#EEF1F3`, `#E8EAEC` (1pt hairline dividers), `#E1E5E8` (0.75pt card borders), `#DDE3E8`, `#CFD6DC`, `#8A9BAC`, `#6A7A88`. TC Grey `#DFDBDA` remains valid alongside these. For text, follow the contrast pairs in Section 2: small muted text is `#5A6B78`; `#6A7A88` is large text only (18pt+, or 14pt+ bold); `#8A9BAC` is never text. Use greys from this ramp for borders, panel fills, and muted text; never an off-palette neutral. Snap imprecise re-entries to canon: `#3A4B5B`→`#3A4B5C`, `#6BA542`→`#6BA543`, `#009BD7`/`#0099D5`→`#009BD6`, `#FDB116`→`#FEB100`.
 
 **Two darks.** TC Text `#111A22` for body copy and captions; `#222B33` for a slightly lighter heading dark (headings only, never body).
 
@@ -938,9 +968,9 @@ Use the segment-specific divider where one exists (Residential, Agriculture, Sla
 
 ### Cover / section-divider slides
 - Background: solid fill, TC Slate `#3A4B5B` (theme `accent1`).
-- Logo lockup (white wordmark + yellow truss mark + "material + science" tagline): top-left, offset 537,460 / 473,468 EMU (≈0.59" / 0.52"), sized 3,898,508 × 861,773 EMU (≈4.26" × 0.94").
+- Logo lockup (white wordmark + yellow truss mark + "material + science" tagline): top-left, offset 537,460 / 473,468 EMU (≈0.59" / 0.52"), sized 3,898,508 × 861,773 EMU (≈4.26" × 0.94", 4.53 : 1).
 - Title text: white, bold, Aptos, below the logo lockup. One keyword within the title may be set in TC Yellow (`accent2`) for emphasis; the rest stays white. Do not yellow more than one phrase per title.
-- Solo truss mark (solid TC Yellow `#FEB100`, no wordmark): bottom-right corner, offset ≈11.56" / 6.18", sized ≈1.18" × 0.93".
+- T-icon (white "t" with the yellow truss mark): bottom-right corner, offset ≈11.56" / 6.18", sized ≈1.18" × 0.93" (1.26 : 1). It is valid here because the full lockup is on the same slide (Section 8). Never put the truss-mark-only file in this box; at 2.71 : 1 it would stretch to twice its height.
 - The three light-grey outlined parallelograms sometimes on the cover are an optional flourish, not required. Omit unless deliberately reintroducing.
 
 ### Content slides
@@ -948,7 +978,8 @@ Use the segment-specific divider where one exists (Residential, Agriculture, Sla
 - Title: top-left, offset 537,460 / 456,432 EMU (≈0.59" / 0.50"), width ≈11,117,083 EMU (≈12.16").
 - Title type: **Aptos Light** (confirmed from the master `titleStyle`), **48pt to start**, TC Slate `#3A4B5C` (hardcoded, not theme-referenced), -20 letter-spacing, 100% line spacing. Not bold.
 - **Title sizing rule:** 48pt is the starting size. If a title is too long for one comfortable line, it may be reduced to fit, **down to a hard floor of 32pt**. If it still will not fit at 32pt, **shorten or tighten the title** — never go below 32pt. Titles should not dominate the top of the slide; a title that needs sub-32pt type is a signal to cut words, not shrink further.
-- Footer logo lockup (slate wordmark + yellow truss mark + tagline): bottom-right, offset ≈11.10" / 6.86", sized ≈1.66" × 0.37". Placed once on the slide master and inherited by every content layout. Do not duplicate it on individual slides.
+- Footer logo (slate wordmark + yellow truss mark, **no tagline**): bottom-right, offset ≈11.37" / 6.99", sized ≈1.62" × 0.24" (6.84 : 1). Placed once on the slide master and inherited by every content layout. Do not duplicate it on individual slides. Section dividers carry the tagline lockup instead (≈11.10" / 6.87", ≈1.66" × 0.37", 4.53 : 1).
+- **Logos are never stretched.** The sizes above are the boxes the template's own logo images fill; they are only correct for those images. When a logo must be placed by hand, set width or height only (never both), or use the `trusscore-pptx` builder's `logo()` helper. Before delivery, run the builder's stretch check (`python trusscore_deck.py check deck.pptx`) on every deck, however it was built.
 - Body text font: Aptos throughout, set explicitly per text run (the theme default is Calibri Light and applies silently if Aptos is not set per run).
 - **No all-caps kicker / eyebrow line above or below slide headings.** Use the heading alone with whitespace. (The one permitted exception is the small letter-spaced category label above a stat-card row, below.)
 - **Bullet levels:** top-level bullets use the solid yellow truss glyph; sub-bullets use the outline (hollow) truss glyph — both are built into the master body style (levels 1 and 2). For a label plus supporting copy, put the label on the top bullet and the copy on an outline sub-bullet. No terminal period on any bullet (Section 12).
@@ -971,7 +1002,8 @@ Used for executive summaries, KPI rows, and metric call-outs.
 - **No colored top-border accent stripe, and no left-side or any-side color-line border, on cards or boxes.** A colored edge line on a card, box, quote, or callout reads as generic AI-template filler (same reason as the icon-circle ban in Section 4). Carry category distinction through a section header label above the card row (e.g. "DIVISION 1 | SAMPLES" in TC Text, small caps or letter-spaced), not through per-card color or an edge stripe.
 - Card label (e.g. "TOTAL SAMPLE UNITS"): small caps or uppercase, TC Text `#111A22`, muted weight.
 - Big number: TC Slate or TC Text, bold, large — the focal point of the card.
-- Supporting line: muted grey from the ramp (`#8A9BAC` or `#6A7A88`), not an off-palette grey.
+- Supporting line: muted grey `#5A6B78` (passes AA at any size on white and the light ramp greys). `#6A7A88` only at 18pt and up; never `#8A9BAC`.
+- Role or category text on a white or light card: `#5A6B78` or TC Slate, never TC Yellow. TC Yellow text is for slate cards only.
 
 **Card-row emphasis variant (approved).** A single stat/data card on its own stays white. But in a *row* of cards, fills may vary to create rhythm: white, a grey from the ramp (`#F5F6F7`, `#EEF1F3`), a light yellow tint (`#FFF8EC`), or full TC Slate `#3A4B5C`. The rule is that **exactly one card is the dark-slate stand-out** — the emphasis card carrying the row's most important number (number in TC Yellow `#FEB100`, label white, supporting line in a light grey such as `#DDE3E8`). Constraints: only one dark-slate card per row; never make every card a different color (that reads as the rejected AI dashboard); do not pair yellow-tint and blue fills in the same row; keep the hairline border, 6% radius, and no-shadow rules. This is fill-for-emphasis, not the banned per-card *edge stripe*.
 
@@ -1043,7 +1075,7 @@ body {
 
 | Generic skill default | Trusscore override | Why |
 |---|---|---|
-| `--bg-header: #1a1a2e` (dark navy) | `#3A4B5C` (TC Slate) | The generic dark header is off-palette navy; TC Slate is the equivalent dark Trusscore already uses for cover slides and dark sections elsewhere |
+| `--bg-header: #1a1a2e` (dark navy) | `#3A4B5C` (TC Slate) | The generic dark header is off-palette navy (not Trusscore Dark Navy `#0F1C27`); TC Slate is the equivalent dark Trusscore already uses for cover slides and dark sections elsewhere |
 | `border-radius: 8px` (`--radius` default) | `4px` | Matches the 4px radius standard already set in Section 3 for digital artifacts — 8px reads softer/more generic than the Trusscore standard |
 | `box-shadow: 0 1px 3px rgba(0,0,0,0.08)` on `.kpi-card`, `.chart-container`, `.table-section` | Remove entirely — `box-shadow: none` | Direct violation of Section 6 (no shadows except genuinely elevated elements like modals/tooltips) |
 | KPI cards: white fill (generic skill default) | **TC Slate fill** (`--bg-card`), white text | Confirmed from two production dashboards — slate-filled summary cards are the actual Trusscore standard, not white cards with colored accents. This is more distinctive than a white-card pattern and should not be reverted to white. |
@@ -1122,9 +1154,12 @@ Before publishing or delivering any Trusscore asset:
 
 **Colour**
 - [ ] TC Yellow not used as text on any background
-- [ ] TC Text used for body copy and captions on light backgrounds only — never headings, never on TC Yellow
+- [ ] TC Text used for body copy and captions on light backgrounds only — never headings, never on TC Yellow, and TC Yellow never on TC Text
+- [ ] Dark Navy `#0F1C27` used only where something darker than TC Slate is needed (text on yellow, a deeper dark surface)
+- [ ] Every background is a brand colour: white, an approved tint, TC Yellow, TC Slate, or Dark Navy. No black, near-black, TC Text, or off-palette dark backgrounds
 - [ ] TC Text not used as a shape fill, background, or design element
-- [ ] TC Grey used for borders, card fills, dividers, and secondary text only — never as a section background fill
+- [ ] TC Grey used for borders, card fills, and dividers only — never as text, never as a section background fill
+- [ ] Every text colour is an approved pair for its background (Section 2 contrast table): no yellow text on light backgrounds, no white text on yellow or green, no green or yellow status text on light backgrounds, small muted text is `#5A6B78`
 - [ ] Headings use TC Slate on light backgrounds, white on TC Slate backgrounds
 - [ ] TC Yellow usage is at or under 10% of visible surface area (60-30-10 rule)
 - [ ] No two yellow-heavy elements in adjacent sections without a neutral buffer
@@ -1135,6 +1170,7 @@ Before publishing or delivering any Trusscore asset:
 **Typography & Logo**
 - [ ] Font is Circular Std (design), Aptos (Office), or Muli/Mulish (web)
 - [ ] Tagline only appears paired with the logo in the approved lock-up
+- [ ] All-white (one-colour white) logo appears only on a TC Yellow background or in black-and-white print; slate or dark backgrounds use the reversed logo with the yellow truss
 - [ ] Logo has minimum clear space on all sides
 
 **Image & Overlay**
@@ -1192,6 +1228,7 @@ Before publishing or delivering any Trusscore asset:
 - [ ] Red/green trend indicators used only for actual up/down deltas attached to a number — never as decorative or category color
 - [ ] No icon-in-colored-circle treatment (see Section 4 and pptx color-pop rule)
 - [ ] Footer logo lockup inherited from the slide master — not duplicated manually on individual slides
+- [ ] No stretched logo or image anywhere: every picture keeps its file's proportions (stretch check reports none)
 
 **HTML Dashboards (Section 14c)**
 - [ ] `:root` CSS variables overridden from the generic build-dashboard defaults — not left as `#1a1a2e` header or Seaborn-style chart colors
