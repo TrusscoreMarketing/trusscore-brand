@@ -798,7 +798,7 @@ Always write product names in full on first reference with trademark symbols:
 - Trusscore® SlatWall™
 - Trusscore® Trims (no trademark symbol on Trims)
 - NorLock™ by Trusscore®
-- RibCore™ by Trusscore®
+- RibCore® by Trusscore®
 - DockDeck™ by Trusscore®
 
 Acceptable short forms on subsequent references (same page, 6+ appearances): Wall&CeilingBoard, SlatWall.

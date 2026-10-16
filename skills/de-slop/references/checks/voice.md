@@ -55,7 +55,7 @@ Trusscore writes to four audiences and the register shifts by audience. Wrong-au
 ## 6. Brand-name rules, a single instance is a finding
 
 - **Never the possessive "Trusscore's."** Rewrite ("Trusscore panels," "Trusscore performance," "Trusscore delivers").
-- Full trademarked product names on first reference: Trusscore® Wall&CeilingBoard™, Trusscore® SlatWall™, Trusscore® Trims, NorLock™ by Trusscore®, RibCore™ by Trusscore®, DockDeck™ by Trusscore®. Acceptable short forms after 6+ appearances on the same page: Wall&CeilingBoard, SlatWall.
+- Full trademarked product names on first reference: Trusscore® Wall&CeilingBoard™, Trusscore® SlatWall™, Trusscore® Trims, NorLock™ by Trusscore®, RibCore® by Trusscore®, DockDeck™ by Trusscore®. Acceptable short forms after 6+ appearances on the same page: Wall&CeilingBoard, SlatWall.
 - **Never in any context:** WCB, W&C, SW, TC panels, TC boards, Trusscore boards, plastic panels, PVC panels.
 - **Never "plastic"** — use "material" or the specific product name. "PVC" only in technical body copy, never in headlines or brand copy.
 

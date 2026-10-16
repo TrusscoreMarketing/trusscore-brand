@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.9] — 2026-10-16
+
+### Fixed
+- **RibCore symbol (Section 13):** RIBCORE is registered in both Canada and the United States, so the product name now reads RibCore® by Trusscore® (it was RibCore™). Mirrored into `USAGE.md` and the `de-slop` voice check. NorLock stays NorLock™ by Trusscore®: only the NorLock logo is registered in either country, not the word. Wall&CeilingBoard™, SlatWall™ and DockDeck™ stay ™; no registrations were found for them. Checked against CIPO records and third-party USPTO mirrors; U.S. status still to be confirmed in USPTO TSDR.
+
 ## [1.4.8] — 2026-10-16
 
 ### Changed
