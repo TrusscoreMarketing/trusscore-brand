@@ -120,14 +120,14 @@ Every text colour must be an approved pair for its background. Ratios are WCAG 2
 | White `#FFFFFF` | TC Text `#111A22` (17.58, AAA) · TC Slate `#3A4B5C` (8.97, AAA) · muted grey `#5A6B78` (5.51, AA) · decline red `#DC3545` (4.53, AA, data signals only) | TC Yellow (1.83) · TC Grey `#DFDBDA` (1.37) · mid grey `#B9B8B8` (1.98) · `#8A9BAC` (2.85) · TC Green (2.96) · TC Blue (3.15, large only at best) |
 | Light tints and ramp greys (`#F3F5F7`, `#F5F6F7`, `#EEF1F3`, `#E8EBF0`, `#FFF8EC`, `#FFF0C2`) | TC Text (AAA) · TC Slate (7.5+, AAA) · muted grey `#5A6B78` (5.1, AA) | TC Yellow (about 1.7) · TC Green (2.74) · `#8A9BAC` · TC Grey |
 | TC Slate `#3A4B5C` | White (8.97, AAA) · TC Yellow (4.91, AA) · `#DDE3E8` (6.93, AA) · mid grey `#B9B8B8` (4.53, AA) · white at 65% opacity (4.89, AA) | TC Text `#111A22` (1.96) and Dark Navy `#0F1C27` (1.93) |
-| TC Yellow `#FEB100` | TC Slate (4.91, AA) · Dark Navy `#0F1C27` (9.46, AAA) when darker is needed | TC Text (brand rule, though it passes contrast) · White (1.83) · mid grey `#B9B8B8` (1.08) |
+| TC Yellow `#FEB100` | TC Slate (4.91, AA) · Dark Navy `#0F1C27` (9.46, AAA) when darker is needed | TC Text or black (brand rule, though both pass contrast) · White (1.83) · mid grey `#B9B8B8` (1.08) |
 | Mid grey `#B9B8B8` | TC Slate (4.53, AA) · Dark Navy `#0F1C27` (8.73, AAA) | White (1.98) · TC Yellow (1.08) |
 | Dark Navy `#0F1C27` | White (17.27, AAA) · TC Yellow (9.46, AAA) · mid grey `#B9B8B8` (8.73, AAA) | TC Slate (1.93) |
 | TC Blue `#009BD6` | TC Text (5.57, AA). White is large only (3.15) | TC Slate (2.84) |
 | TC Green `#6BA543` | TC Text (5.93, AA) | White (2.96) · TC Slate (3.03, large only) |
 
 Rules that follow from the table:
-- **TC Yellow text only on TC Slate or Dark Navy.** Never on white, tints, greys, or photos without a slate panel behind it.
+- **TC Yellow text only on TC Slate or Dark Navy.** Never on white, tints, greys, or photos without a slate panel behind it. **Never on black or TC Text**, even though both pass contrast (about 9.6:1); this is a brand rule, not a contrast one.
 - **On a TC Yellow background, text is TC Slate, or Dark Navy when darker is needed.** Never TC Text, never white.
 - **TC Yellow never sits on TC Text.** TC Text is a text colour, not a surface; for a dark surface under yellow, use TC Slate or Dark Navy.
 - **Small muted text is `#5A6B78`.** `#6A7A88` (4.42) and TC Light Slate `#6B7F8E` (4.16) are large text only; `#8A9BAC` and TC Grey are never text.

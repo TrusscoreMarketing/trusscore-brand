@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.8] — 2026-10-16
+
+### Changed
+- **TC Yellow never on black or TC Text (Section 2):** stated explicitly in the yellow text rule and the TC Yellow row of the contrast table. Both pass contrast (about 9.6:1), so this is a brand rule, not a contrast one; it was previously implied only by the background rule. Mirrored into the `trusscore-pptx` skill and the `de-slop` visual check.
+
 ## [1.4.7] — 2026-10-14
 
 ### Fixed

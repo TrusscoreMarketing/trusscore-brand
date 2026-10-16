@@ -152,7 +152,7 @@ This is the middle path between the public skill's "every slide needs a visual" 
 **Text contrast (Section 2 contrast table is canon).** Every text colour must be an approved pair for its background:
 - White and light greys/tints: TC Text, TC Slate, `#5A6B78`. Never TC Yellow (1.83), TC Green (2.96), `#8A9BAC`, or TC Grey.
 - TC Slate: white, TC Yellow (4.91), `#DDE3E8`. Never TC Text (1.96).
-- TC Yellow: TC Slate, or Dark Navy `#0F1C27` when darker is needed. Never TC Text (brand rule), never white (1.83). TC Yellow is never set on TC Text either.
+- TC Yellow: TC Slate, or Dark Navy `#0F1C27` when darker is needed. Never TC Text (brand rule), never white (1.83). TC Yellow is never set on black or TC Text either.
 - Status (good / warning / problem): colour a shape or marker, and name the status in a TC Slate label. Green or yellow status text on a light card fails.
 
 **Two darks.** TC Text `#111A22` for body copy and captions; `#222B33` for a slightly lighter heading dark (headings only). Do not use `#222B33` for body.
