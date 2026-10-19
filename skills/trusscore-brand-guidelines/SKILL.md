@@ -267,13 +267,12 @@ Each background has a defined set of approved text, icon, button, and border col
 
 **Backgrounds are always a brand colour.** Use white (the default), an approved tint, TC Yellow, TC Slate, or Dark Navy `#0F1C27` when something darker than slate is needed. Never black (`#000000`), near-black, TC Text `#111A22`, or any other off-palette dark, even when a format skill, template, or theme defaults to a dark mode. When a dark surface is needed, it is TC Slate first, Dark Navy second.
 
-**TC Grey `#DFDBDA` — borders, card fills, and body text only**
-TC Grey is an official brand colour but has a pinkish-warm undertone that sits outside the cool/warm tint families used for section backgrounds. It is not approved as a section background fill. Approved uses:
+**TC Grey `#DFDBDA` — borders, card fills, and dividers only**
+TC Grey is an official brand colour but has a pinkish-warm undertone that sits outside the cool/warm tint families used for section backgrounds. It is not approved as a section background fill, and it is never a text colour on light backgrounds (1.37:1 on white). Approved uses:
 - Card and panel borders: `0.5px solid #DFDBDA`
 - Table row dividers: `1px solid #DFDBDA`
 - Horizontal section rules: `1px solid #DFDBDA`
 - Bullet and list indent markers
-- Body text on light backgrounds (TC Grey `#DFDBDA` is approved for secondary body text and captions where a softer tone is needed)
 
 ---
 

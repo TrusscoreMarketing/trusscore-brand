@@ -2,6 +2,11 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.10] — 2026-10-19
+
+### Fixed
+- **TC Grey is never text on light backgrounds (Section 3b):** the TC Grey block listed "body text" in its heading and approved it for secondary body text and captions, which contradicted Section 2 and the pre-publication checklist. TC Grey `#DFDBDA` measures 1.37:1 on white, so it fails WCAG AA at any size. The heading now reads "borders, card fills, and dividers only," the intro states the no-text rule, and the body-text bullet is removed. The `de-slop` visual check already flagged TC Grey as text, so it needed no change.
+
 ## [1.4.9] — 2026-10-16
 
 ### Fixed
