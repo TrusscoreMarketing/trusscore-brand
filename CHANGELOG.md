@@ -2,6 +2,13 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.11] — 2026-10-20
+
+### Changed
+- **Compound modifiers hyphenate only before the noun (Section 12):** the rule said "hyphen for compounds" with no position, which let "is moisture-resistant" pass. Chicago hyphenates a compound only before the noun it modifies and leaves it open after the noun or with no noun following ("a water-resistant panel," "the panel is water resistant," "Build It Back Water Resistant"). Added examples, the suspended-hyphen case, and a pointer to Chicago's always-hyphenated compounds. Mirrored into the `de-slop` voice check. Existing copy is not retro-edited; the rule applies going forward.
+- **Hedge-stacking example reworded (Section 9):** "It's moisture-resistant" became "It resists moisture," so the example no longer models a hyphen in predicate position.
+- **Title Case says pronouns include "it" (Section 11):** "pronouns" now reads "pronouns (including it)," so "Build It Back" is read one way. The rule is unchanged. Confirmed against the 16th-edition headline rule and secondary sources; the 18th-edition text sits behind the Chicago Online login and was not read directly.
+
 ## [1.4.10] — 2026-10-19
 
 ### Fixed

@@ -712,7 +712,7 @@ In brand and marketing copy, do not stack more than one qualifier per claim. "Ca
 **Fix:** Pick one. State the claim directly, or qualify it once with a specific condition.
 
 - Not: "This can help improve moisture resistance in many cases."
-- Use: "It's moisture-resistant."
+- Use: "It resists moisture."
 
 - Not (in marketing copy): "Performance may vary depending on installation conditions."
 - Use: "Installed correctly, it won't need to be replaced."
@@ -739,7 +739,7 @@ All capitalization follows **Chicago Manual of Style, 18th Edition (2024)**.
 ### Title Case
 Use for: H1 page headlines, H2 section headers, campaign headlines, product names, marketing materials.
 
-**Capitalize:** First and last words always; nouns, pronouns, verbs, adjectives, adverbs; prepositions with 5+ letters (About, Against, Before, Between, Through, Under, Without); both parts of hyphenated compounds (Moisture-Resistant, Pre-Finished).
+**Capitalize:** First and last words always; nouns, pronouns (including it), verbs, adjectives, adverbs; prepositions with 5+ letters (About, Against, Before, Between, Through, Under, Without); both parts of hyphenated compounds (Moisture-Resistant, Pre-Finished).
 
 **Lowercase:** Articles (a, an, the); coordinating conjunctions (and, but, for, nor, or, so, yet); prepositions with 4 or fewer letters (at, by, for, in, of, on, to, up, with); infinitive "to".
 
@@ -764,7 +764,13 @@ Multi-sentence headlines: use periods between sentences.
 Maximum two per content piece. Beyond that, the construction is doing too much work—replace with a colon after a bold label, a comma within the clause, or a full sentence break.
 
 ### En Dashes and Hyphens
-No spaces. En dash for ranges (12–18 inches). Hyphen for compounds (moisture-resistant, DIY-friendly).
+No spaces. En dash for ranges (12–18 inches).
+
+**Compound modifiers (Chicago 18th ed.):** hyphenate only when the compound comes before the noun it modifies. After the noun, or with no noun following, leave it open.
+- Before a noun: "a water-resistant panel," "mold-resistant walls," "DIY-friendly installation."
+- After a noun or verb: "The panel is water resistant." "Build It Back Water Resistant." "Wall&CeilingBoard is mold resistant and easy to clean."
+- Two modifiers sharing a noun use a suspended hyphen: "water- and mold-resistant panels."
+- Compounds Chicago always hyphenates keep the hyphen in any position (see CMOS 7.89–7.92).
 
 "DIY-friendly" is homeowner-only. Remove from any mixed homeowner/contractor or contractor-only context.
 
