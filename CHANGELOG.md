@@ -2,6 +2,12 @@
 
 All notable changes to the Trusscore brand system are recorded here. Format follows [Keep a Changelog](https://keepachangelog.com); versions follow [Semantic Versioning](https://semver.org).
 
+## [1.4.12] — 2026-10-23
+
+### Added
+- **Waterproof vs. water-resistant (Section 9):** "waterproof" describes the panel material only ("the panel is waterproof"). Walls, rooms, homes, assemblies, and outcomes are "water-resistant," because the cavity behind the panel still gets wet in a flood. The guideline had no rule either way and the live site uses both ("100% waterproof" on say-hello-to-trusscore-c, "Waterproof Your Walls" on hurricane-preparedness, "100% water and moisture resistant" on the FRP comparison). Mirrored into the `de-slop` voice check. Existing pages are not retro-edited; the rule applies going forward and to the storm-recovery and hurricane-preparedness rebuilds.
+- **Prefinished is one word (Section 12):** no hyphen in any position. The Title Case example "Pre-Finished" (Section 11) is replaced with "Mold-Resistant." Mirrored into the `de-slop` voice check.
+
 ## [1.4.11] — 2026-10-20
 
 ### Changed

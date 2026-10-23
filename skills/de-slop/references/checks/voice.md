@@ -41,13 +41,14 @@ Trusscore writes to four audiences and the register shifts by audience. Wrong-au
 - Approved phrasings: "Life gets messy" (not "challenges occur"), "Magic marker masterpieces" (not "accidental marks"), "Real life" (not "daily activities").
 - **Hedge stacking:** in brand/marketing/consumer copy, no more than one qualifier per claim. Pick one: state it directly, or qualify once with a specific condition (a number, timeframe, or named condition), not a general softener. (Technical docs, spec sheets, install guides, and warranty language are exempt: required conditional phrasing there is not a hedge.)
 - Bold claims get receipts. A sweeping claim stated as bare fact with no number, example, or specific is a finding.
+- **Waterproof vs. water-resistant:** "waterproof" only when the subject is the panel material itself ("the panel is waterproof," "waterproof PVC panels"). Walls, rooms, homes, assemblies, and outcomes are "water-resistant." "Waterproof your walls" or "a waterproof basement" is a finding.
 
 ## 5. Capitalization and punctuation (Chicago 18th ed.)
 
 - Title Case: H1, H2, campaign headlines, product names. Sentence case: subtitles, body, blog headlines, email subject lines, social posts, H3+.
 - Single-sentence headlines take no period.
 - Em dashes: no spaces, `word—word`, maximum two per piece.
-- En dash for ranges (12–18 inches). Hyphenate a compound modifier only before the noun (a moisture-resistant panel); leave it open after the noun or with no noun following (the panel is moisture resistant).
+- En dash for ranges (12–18 inches). Hyphenate a compound modifier only before the noun (a moisture-resistant panel); leave it open after the noun or with no noun following (the panel is moisture resistant). "Prefinished" is one word, no hyphen; "pre-finished" is a finding.
 - **Oxford comma always**, in every list of three or more.
 - **No terminal period on bullet points** — bullets are fragments; a bullet that ends with a period is a finding. A bold lead-in label inside a bullet keeps its separator period; full-sentence callout boxes and body paragraphs keep normal end punctuation.
 - Fractions not decimals (1-1/4" not 1.25"). Imperial first. U.S. spelling (color, aluminum, center).
@@ -75,4 +76,4 @@ Synergy, guru, expert (as a self-label), disruptor, game-changer, "leverage" as 
 
 - **Aligned:** right register for the audience/channel, active and benefits-first, correct brand-name and product-name usage, Chicago mechanics, zero banned items.
 - **Drift:** on-voice but flat, one soft hedge, a slightly off register, a missing Oxford comma or spaced em dash.
-- **Misaligned:** any possessive "Trusscore's," any banned abbreviation or "plastic," any banned word, drywall as the comparison in commercial/ag, wrong-audience language, or stacked hedges.
+- **Misaligned:** any possessive "Trusscore's," any banned abbreviation or "plastic," any banned word, drywall as the comparison in commercial/ag, wrong-audience language, stacked hedges, or "waterproof" applied to anything other than the panel material.

@@ -719,6 +719,14 @@ In brand and marketing copy, do not stack more than one qualifier per claim. "Ca
 
 If the claim genuinely needs a caveat in marketing copy, make the caveat specific (a number, a condition, a timeframe) rather than a general softener.
 
+### Waterproof vs. Water-Resistant
+"Waterproof" describes the panel material only. The panel is non-porous PVC, so "the panel is waterproof" and "waterproof PVC panels" are accurate. Walls, rooms, homes, assemblies, and outcomes are "water-resistant": in a flood the cavity behind the panel still gets wet and still has to dry, so "waterproof your walls" promises something the product does not deliver.
+
+- Use: "Trusscore panels are waterproof." "Build your walls back with water-resistant panels." "The panel is water resistant."
+- Not: "Waterproof your walls." "A waterproof basement." "Waterproof protection for your home."
+
+Default to "water-resistant" in new copy unless the sentence is strictly about the material.
+
 ---
 
 ## 10. Audience-Specific Tone
@@ -739,7 +747,7 @@ All capitalization follows **Chicago Manual of Style, 18th Edition (2024)**.
 ### Title Case
 Use for: H1 page headlines, H2 section headers, campaign headlines, product names, marketing materials.
 
-**Capitalize:** First and last words always; nouns, pronouns (including it), verbs, adjectives, adverbs; prepositions with 5+ letters (About, Against, Before, Between, Through, Under, Without); both parts of hyphenated compounds (Moisture-Resistant, Pre-Finished).
+**Capitalize:** First and last words always; nouns, pronouns (including it), verbs, adjectives, adverbs; prepositions with 5+ letters (About, Against, Before, Between, Through, Under, Without); both parts of hyphenated compounds (Moisture-Resistant, Mold-Resistant).
 
 **Lowercase:** Articles (a, an, the); coordinating conjunctions (and, but, for, nor, or, so, yet); prepositions with 4 or fewer letters (at, by, for, in, of, on, to, up, with); infinitive "to".
 
@@ -771,6 +779,7 @@ No spaces. En dash for ranges (12–18 inches).
 - After a noun or verb: "The panel is water resistant." "Build It Back Water Resistant." "Wall&CeilingBoard is mold resistant and easy to clean."
 - Two modifiers sharing a noun use a suspended hyphen: "water- and mold-resistant panels."
 - Compounds Chicago always hyphenates keep the hyphen in any position (see CMOS 7.89–7.92).
+- "Prefinished" is one word, no hyphen, in any position: "prefinished panels," "Prefinished Wall and Ceiling Panels." Never "pre-finished."
 
 "DIY-friendly" is homeowner-only. Remove from any mixed homeowner/contractor or contractor-only context.
 
